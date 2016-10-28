@@ -11,4 +11,8 @@ package datos;
  */
 public class Escalera extends Camino{
     
+    public Escalera(int[] casillaInicio, int[] casillaFinal) {
+        super(casillaInicio, casillaFinal);
+    }
+    
 }

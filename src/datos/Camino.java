@@ -10,6 +10,12 @@ package datos;
  * @author LENOVO
  */
 public class Camino {
-    private Casilla casillaInicio;
-    private Casilla casillaFinal;
+    private int casillaInicio[] = new int[2];
+    private int casillaFinal[] = new int[2];
+    
+    
+    public Camino(int[] casillaInicio, int[] casillaFinal){ // fila - columna, fila - columna
+        this.casillaInicio = casillaInicio;
+        this.casillaFinal = casillaFinal;
+    }
 }

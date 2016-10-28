@@ -11,4 +11,8 @@ package datos;
  */
 public class Serpiente extends Camino {
     
+    public Serpiente(int[] casillaInicio, int[] casillaFinal) {
+        super(casillaInicio, casillaFinal);
+    }
+    
 }
