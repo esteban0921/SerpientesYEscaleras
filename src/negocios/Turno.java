@@ -10,5 +10,5 @@ package negocios;
  * @author LENOVO
  */
 public class Turno {
-    
+    private static int turnoDe;
 }

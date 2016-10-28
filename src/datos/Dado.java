@@ -13,4 +13,8 @@ public class Dado {
     private String color;
     private int numeroObtenido;
     
+    public void lanzarDado(){
+        
+    }
+    
 }

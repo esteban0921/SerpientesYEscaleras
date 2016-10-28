@@ -11,4 +11,15 @@ package negocios;
  */
 public class Movimiento {
     
+    public boolean esGanador(){
+        return true;
+    }
+    
+    public void comprobarEscalera(){
+        
+    }
+    
+    public void comprobarSerpiente(){
+        
+    }
 }
