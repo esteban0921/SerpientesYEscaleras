@@ -13,4 +13,23 @@ public class Tablero {
     private Casilla casillas[][];
     private Escalera escaleras[];
     private Serpiente serpientes[];
+    
+    public Tablero(Casilla casilla[][], Escalera escaleras[], Serpiente serpientes[]){
+        this.casillas = casilla;
+        this.escaleras = escaleras;
+        this.serpientes = serpientes;
+    }
+
+    public Casilla[][] getCasillas() {
+        return casillas;
+    }
+
+    public Escalera[] getEscaleras() {
+        return escaleras;
+    }
+
+    public Serpiente[] getSerpientes() {
+        return serpientes;
+    }
+    
 }

@@ -17,4 +17,47 @@ public class Tipo {
     private int numeroEscaleras;
     private int numeroSerpientes;
     private boolean fantasmas;
+    
+    public Tipo (int tamañoTablero, Tablero tablero, boolean unJugador, int numeroCasillasSorpresa, int numeroEscaleras, int numeroSerpientes, boolean fantasmas){
+        this.tamañoTablero = tamañoTablero;
+        this.tablero = tablero;
+        this.unJugador = unJugador;
+        this.numeroCasillasSorpresa = numeroCasillasSorpresa;
+        this.numeroEscaleras = numeroEscaleras;
+        this.numeroSerpientes = numeroSerpientes;
+        this.fantasmas = fantasmas;
+    }
+
+    public int getTamañoTablero() {
+        return tamañoTablero;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public boolean isUnJugador() {
+        return unJugador;
+    }
+
+    public int getNumeroCasillasSorpresa() {
+        return numeroCasillasSorpresa;
+    }
+
+    public int getNumeroEscaleras() {
+        return numeroEscaleras;
+    }
+
+    public int getNumeroSerpientes() {
+        return numeroSerpientes;
+    }
+
+    public boolean isFantasmas() {
+        return fantasmas;
+    }
+    
+    
+    
+    
+    
 }

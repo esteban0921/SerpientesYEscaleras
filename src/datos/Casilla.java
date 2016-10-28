@@ -10,5 +10,10 @@ package datos;
  * @author LENOVO
  */
 public class Casilla {
+    private boolean sorpresa;
+    
+    public Casilla(boolean sorpresa){
+        this.sorpresa = sorpresa;
+    }
     
 }
