@@ -17,4 +17,12 @@ public class Ficha {
         this.color = color;
         this.forma = forma;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getForma() {
+        return forma;
+    }
 }

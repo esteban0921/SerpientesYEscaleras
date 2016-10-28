@@ -17,6 +17,14 @@ public class Dado {
         this.color = color;
         this.numeroObtenido = numeroObtenido;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public int getNumeroObtenido() {
+        return numeroObtenido;
+    }
     
     public void lanzarDado(){
         

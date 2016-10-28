@@ -19,6 +19,16 @@ public class Jugador {
         this.nombre = nombre;
         this.ficha = ficha;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Ficha getFicha() {
+        return ficha;
+    }
 }
