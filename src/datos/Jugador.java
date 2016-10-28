@@ -13,4 +13,12 @@ public class Jugador {
     private int id;
     private String nombre;
     private Ficha ficha;
+
+    public Jugador(int id, String nombre, Ficha ficha) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ficha = ficha;
+    }
+    
+    
 }

@@ -12,6 +12,11 @@ package datos;
 public class Dado {
     private String color;
     private int numeroObtenido;
+
+    public Dado(String color, int numeroObtenido) {
+        this.color = color;
+        this.numeroObtenido = numeroObtenido;
+    }
     
     public void lanzarDado(){
         

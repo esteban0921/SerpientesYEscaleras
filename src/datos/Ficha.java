@@ -12,4 +12,9 @@ package datos;
 public class Ficha {
     private String color;
     private String forma;
+
+    public Ficha(String color, String forma) {
+        this.color = color;
+        this.forma = forma;
+    }
 }
