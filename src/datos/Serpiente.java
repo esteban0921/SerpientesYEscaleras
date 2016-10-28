@@ -9,6 +9,6 @@ package datos;
  *
  * @author LENOVO
  */
-public class Serpiente {
+public class Serpiente extends Camino {
     
 }

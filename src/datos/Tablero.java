@@ -10,5 +10,7 @@ package datos;
  * @author LENOVO
  */
 public class Tablero {
-    
+    private Casilla casillas[][];
+    private Escalera escaleras[];
+    private Serpiente serpientes[];
 }

@@ -10,5 +10,6 @@ package datos;
  * @author LENOVO
  */
 public class Camino {
-    
+    private Casilla casillaInicio;
+    private Casilla casillaFinal;
 }

@@ -10,5 +10,7 @@ package datos;
  * @author LENOVO
  */
 public class Jugador {
-    
+    private int id;
+    private String nombre;
+    private Ficha ficha;
 }

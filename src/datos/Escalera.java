@@ -9,6 +9,6 @@ package datos;
  *
  * @author LENOVO
  */
-public class Escalera {
+public class Escalera extends Camino{
     
 }

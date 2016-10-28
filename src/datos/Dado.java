@@ -10,5 +10,7 @@ package datos;
  * @author LENOVO
  */
 public class Dado {
+    private String color;
+    private int numeroObtenido;
     
 }

@@ -10,5 +10,6 @@ package datos;
  * @author LENOVO
  */
 public class Ficha {
-    
+    private String color;
+    private String forma;
 }
