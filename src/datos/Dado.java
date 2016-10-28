@@ -5,6 +5,8 @@
  */
 package datos;
 
+import java.util.Random;
+
 /**
  *
  * @author LENOVO
@@ -27,7 +29,7 @@ public class Dado {
     }
     
     public void lanzarDado(){
-        
-    }
-    
+        Random  azar = new Random();
+        this.numeroObtenido = (int)(azar.nextDouble() * 6 + 1);
+    }  
 }
