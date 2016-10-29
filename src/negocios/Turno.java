@@ -4,11 +4,35 @@
  * and open the template in the editor.
  */
 package negocios;
+import datos.*;
 
 /**
  *
  * @author LENOVO
  */
 public class Turno {
-    private static int turnoDe;
+    
+    public  int numeroDeJugadores;
+   
+    private  int turnoDe;
+   
+    public Turno( int turnoDe){
+        this.turnoDe = turnoDe; 
+    }
+    
+    public int ComprobarTurno (){
+        int turno = this.turnoDe;
+         turno ++;
+         if (turno > this.numeroDeJugadores){
+             turno =1;
+         }        
+        return turno;
+    }
+
+    public  int getTurnoDe() {
+        return turnoDe;
+    }
+    
+    
+    
 }
