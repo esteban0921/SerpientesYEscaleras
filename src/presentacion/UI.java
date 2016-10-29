@@ -13,12 +13,14 @@ import datos.*;
  */
 public class UI {
 
-    public static void imprimirTablero(Tablero tablero) {
+    public static void imprimirTablero(Tablero tablero, int[] posicionJugador1) {
         Casilla c[][] = tablero.getCasillas();
         Escalera e[] = tablero.getEscaleras();
         boolean hayEscalera = false;
         Serpiente s[] = tablero.getSerpientes();
         boolean haySerpiente = false;
+
+        boolean jugador1 = false;
 
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c[1].length; j++) {
@@ -39,6 +41,10 @@ public class UI {
                     if ((s[k].getCasillaFinal()[0] == i) && (s[k].getCasillaFinal()[1] == j)) {
                         haySerpiente = true;
                     }
+
+                    if ((posicionJugador1[0] == i) && (posicionJugador1[1] == j)) {
+                        jugador1 = true;
+                    }
                 }
 
                 if (c[i][j].isSorpresa()) {
@@ -48,7 +54,10 @@ public class UI {
                     hayEscalera = false;
                 } else if (haySerpiente) {
                     System.out.print("S\t");
-                    haySerpiente=false;
+                    haySerpiente = false;
+                } else if (jugador1) {
+                    System.out.print("J1\t");
+                    jugador1 = false;
                 } else {
                     System.out.print("-\t");
                 }
