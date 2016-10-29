@@ -11,18 +11,12 @@ package datos;
  */
 public class Ficha {
     private String color;
-    private String forma;
 
-    public Ficha(String color, String forma) {
+    public Ficha(String color) {
         this.color = color;
-        this.forma = forma;
     }
 
     public String getColor() {
         return color;
-    }
-
-    public String getForma() {
-        return forma;
     }
 }
