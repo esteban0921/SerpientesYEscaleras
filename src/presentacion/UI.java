@@ -13,7 +13,7 @@ import datos.*;
  */
 public class UI {
 
-    public static void imprimirTablero(Tablero tablero, int[] posicionJugador1) {
+    public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
         Casilla c[][] = tablero.getCasillas();
         Escalera e[] = tablero.getEscaleras();
         boolean hayEscalera = false;
@@ -21,6 +21,9 @@ public class UI {
         boolean haySerpiente = false;
 
         boolean jugador1 = false;
+        boolean jugador2 = false;
+        boolean jugador3 = false;
+        boolean jugador4 = false;
 
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c[1].length; j++) {
@@ -41,9 +44,23 @@ public class UI {
                     if ((s[k].getCasillaFinal()[0] == i) && (s[k].getCasillaFinal()[1] == j)) {
                         haySerpiente = true;
                     }
-
-                    if ((posicionJugador1[0] == i) && (posicionJugador1[1] == j)) {
-                        jugador1 = true;
+                    
+                    for (int l = 0; l < jugadores.length; l++) {
+                        int pocision[] = jugadores[l].getPosicion();
+                        if ((pocision[0] == i) && (pocision[1] == j)) {
+                            if(l==0){
+                                jugador1 = true;
+                            }
+                            if(l==1){
+                                jugador2 = true;
+                            }
+                            if(l==2){
+                                jugador3 = true;
+                            }
+                            if(l==3){
+                                jugador4 = true;
+                            }
+                        }
                     }
                 }
 
@@ -59,9 +76,25 @@ public class UI {
                 } else {
                     impresion = "-";
                 }
+                
                 if (jugador1) {
                     impresion = "J1";
                     jugador1 = false;
+                }
+                
+                if (jugador2) {
+                    impresion = "J2";
+                    jugador2 = false;
+                }
+                
+                if (jugador3) {
+                    impresion = "J3";
+                    jugador3 = false;
+                }
+                
+                if (jugador4) {
+                    impresion = "J4";
+                    jugador4 = false;
                 }
                 System.out.print(impresion + "\t");
             }
