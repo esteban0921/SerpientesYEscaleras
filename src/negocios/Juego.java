@@ -79,13 +79,17 @@ public class Juego {
         Jugador jugador2 = crearJugador(2, "Brian", "azul");
         Jugador jugador3 = crearJugador(3, "Jhon", "verde");
         Jugador jugador4 = crearJugador(4, "Brayan", "amarillo");
-        Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
+        Jugador jugadores[] = {jugador1};
         Dado dado = new Dado("rojo");
         
         Juego juego = new Juego(tipo1,jugadores,dado);
 
-        int[] posicionJugador1 = {9, 3};
+        int[] posicionJugador1 = {9, 0};
         jugador1.setPosicion(posicionJugador1);
+        Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador1);
+        Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador1);
+        Movimiento.esGanador(jugador1);
+        
         int[] posicionJugador2 = {2, 3};
         jugador2.setPosicion(posicionJugador2);
         int[] posicionJugador3 = {8, 3};
