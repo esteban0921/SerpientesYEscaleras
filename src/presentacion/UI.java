@@ -6,12 +6,14 @@
 package presentacion;
 
 import datos.*;
+import java.util.Scanner;
 
 /**
  *
  * @author LENOVO
  */
 public class UI {
+    static Scanner s = new Scanner(System.in);
 
     public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
         Casilla c[][] = tablero.getCasillas();
