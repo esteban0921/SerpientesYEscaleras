@@ -11,9 +11,16 @@ package datos;
  */
 public class Casilla {
     private boolean sorpresa;
-    
-    public Casilla(boolean sorpresa){
+
+    public Casilla() {
+        this.sorpresa = false;
+    }
+
+    public void setSorpresa(boolean sorpresa) {
         this.sorpresa = sorpresa;
     }
-    
+
+    public boolean isSorpresa() {
+        return sorpresa;
+    }
 }

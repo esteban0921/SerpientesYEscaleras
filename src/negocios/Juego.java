@@ -58,7 +58,7 @@ public class Juego {
         
         Ficha fichaJugador1 = new Ficha("Perro","Roja");        
         Jugador jugador1 = new Jugador(1, "Cristian", fichaJugador1); 
-        int[] posicionJugador1 = {9,5};
+        int[] posicionJugador1 = {9,8};
         jugador1.setPosicion(posicionJugador1);
         UI.imprimirTablero(tablero, jugador1.getPosicion());
     }

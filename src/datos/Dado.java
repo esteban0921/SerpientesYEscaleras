@@ -12,6 +12,7 @@ import java.util.Random;
  * @author LENOVO
  */
 public class Dado {
+
     private String color;
     private int numeroObtenido;
 
@@ -27,9 +28,9 @@ public class Dado {
     public int getNumeroObtenido() {
         return numeroObtenido;
     }
-    
-    public void lanzarDado(){
-        Random  azar = new Random();
-        this.numeroObtenido = (int)(azar.nextDouble() * 6 + 1);
-    }  
+
+    public void lanzarDado() {
+        Random azar = new Random();
+        this.numeroObtenido = (int) (azar.nextDouble() * 6 + 1);
+    }
 }

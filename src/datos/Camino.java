@@ -18,4 +18,12 @@ public class Camino {
         this.casillaInicio = casillaInicio;
         this.casillaFinal = casillaFinal;
     }
+
+    public int[] getCasillaInicio() {
+        return casillaInicio;
+    }
+
+    public int[] getCasillaFinal() {
+        return casillaFinal;
+    }
 }
