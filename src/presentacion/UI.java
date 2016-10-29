@@ -101,4 +101,108 @@ public class UI {
             System.out.println("");
         }
     }
+
+public static int BuscarDatos(String[] Arreglo, String string) {
+        int result = -1;
+        int cant = 0;
+        for (String stringFounded : Arreglo) {
+            if (Arreglo[cant].equals(string)) {
+                result = cant;
+            }
+            cant++;
+        }
+        return result;
+    }
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static String leerNombre() {
+        boolean correcto = true;
+        String nombre;
+        do {
+            correcto = true;
+            System.out.println("Digite el nombre:");
+            nombre = s.nextLine();
+            if (nombre.length() < 5 || nombre.length() > 15) {
+                System.out.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
+                correcto = false;
+            } else {
+                for (int i = 0; i < nombre.length(); i++) {
+                    if (isNumeric(String.valueOf(nombre.charAt(i)))) {
+                        correcto = false;
+                    }
+                }
+                if (correcto = false) {
+                    System.out.println("El nombre no debe tener ningun numero\nPor favor vuelva a digitarlo\n");
+                }
+            }
+        } while (correcto == false);
+        return nombre;
+    }
+    
+    public static String LeerColorDeFicha() {
+        boolean correcto = true;
+        String colorDeFicha = "Color invalido";
+        int posicion = 0;
+
+        do {
+            colorDeFicha = "Color invalido";
+            System.out.println("Digite el color de la ficha");
+            colorDeFicha = s.nextLine();
+            if (colorDeFicha.length() > 3 && colorDeFicha.length() < 9) {
+                posicion = BuscarDatos(datos.Ficha.colores, colorDeFicha);
+                if (posicion < datos.Ficha.colores.length) {
+                    correcto = true;
+                }
+            } else {
+                for (int i = 0; i < colorDeFicha.length(); i++) {
+                    if (isNumeric(String.valueOf(colorDeFicha.charAt(i)))) {
+                        correcto = false;
+                    }
+                }
+                if (correcto == false) {
+                    System.out.println("El color no puede tener ningun caracter alfabetico");
+                }
+            }
+        } while (correcto);
+        return colorDeFicha;
+    }
+    
+    public static String LeerColorDeDado() {
+        boolean correcto = true;
+        String colorDeDado = "Color invalido";
+        int posicion = 0;
+
+        do {
+            colorDeDado = "Color invalido";
+            System.out.println("Digite el color del dado");
+            colorDeDado = s.nextLine();
+            if (colorDeDado.length() > 3 && colorDeDado.length() < 9) {
+                posicion = BuscarDatos(datos.Dado.colores, colorDeDado);
+                if (posicion < datos.Dado.colores.length) {
+                    correcto = true;
+                }
+            } else {
+                for (int i = 0; i < colorDeDado.length(); i++) {
+                    if (isNumeric(String.valueOf(colorDeDado.charAt(i)))) {
+                        correcto = false;
+                    }
+                }
+                if (correcto == false) {
+                    System.out.println("El color no puede tener ningun caracter alfabetico");
+                }
+            }
+        } while (correcto);
+        return colorDeDado;
+    }
+
+   
+    
 }
