@@ -161,7 +161,7 @@ public class Juego {
     public static void main(String[] args) {
 
         Tipo tipo1 = crearTipo1();
-        Jugador jugador1 = crearJugador(1, "Cristian", "rojo");
+        Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.LeerColorDeFicha());
         Jugador jugador2 = crearJugador(2, "Brian", "azul");
         Jugador jugador3 = crearJugador(3, "Jhon", "verde");
         Jugador jugador4 = crearJugador(4, "Brayan", "amarillo");
