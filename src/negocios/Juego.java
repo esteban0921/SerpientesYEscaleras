@@ -18,6 +18,12 @@ public class Juego {
     private Jugador jugadores[];
     private Dado dado;
 
+    public Juego(Tipo tipo, Jugador[] jugadores, Dado dado) {
+        this.tipo = tipo;
+        this.jugadores = jugadores;
+        this.dado = dado;
+    }
+
     public static Tipo crearTipo1() {
         int a[] = {2, 6};
         int b[] = {6, 8};
@@ -75,6 +81,8 @@ public class Juego {
         Jugador jugador4 = crearJugador(4, "Brayan", "amarillo");
         Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
         Dado dado = new Dado("rojo");
+        
+        Juego juego = new Juego(tipo1,jugadores,dado);
 
         int[] posicionJugador1 = {9, 3};
         jugador1.setPosicion(posicionJugador1);
