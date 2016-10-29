@@ -16,9 +16,9 @@ public class Dado {
     private String color;
     private int numeroObtenido;
 
-    public Dado(String color, int numeroObtenido) {
+    public Dado(String color) {
         this.color = color;
-        this.numeroObtenido = numeroObtenido;
+        this.numeroObtenido = 0;
     }
 
     public String getColor() {
