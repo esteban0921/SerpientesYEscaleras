@@ -57,8 +57,8 @@ public class Juego {
         return tipo1;
     }
 
-    public static Jugador crearJugador(int id, String nombre, String forma, String color) {
-        Ficha fichaJugador = new Ficha(forma, color);
+    public static Jugador crearJugador(int id, String nombre, String color) {
+        Ficha fichaJugador = new Ficha(color);
         Jugador jugador = new Jugador(id, nombre, fichaJugador);
         return jugador;
     }
@@ -69,10 +69,10 @@ public class Juego {
     public static void main(String[] args) {
 
         Tipo tipo1 = crearTipo1();
-        Jugador jugador1 = crearJugador(1, "Cristian", "perro", "rojo");
-        Jugador jugador2 = crearJugador(2, "Brian", "gato", "azul");
-        Jugador jugador3 = crearJugador(3, "Jhon", "casa", "verde");
-        Jugador jugador4 = crearJugador(4, "Brayan", "bota", "amarillo");
+        Jugador jugador1 = crearJugador(1, "Cristian", "rojo");
+        Jugador jugador2 = crearJugador(2, "Brian", "azul");
+        Jugador jugador3 = crearJugador(3, "Jhon", "verde");
+        Jugador jugador4 = crearJugador(4, "Brayan", "amarillo");
         Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
         Dado dado = new Dado("rojo");
 
