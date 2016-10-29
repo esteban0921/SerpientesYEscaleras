@@ -37,4 +37,80 @@ public class Movimiento {
             }
         }
     }
+
+    public void comprobarSorpresa(Jugador jugador, Casilla[][] casilla) { //Si cayó al metodo, llevar al metodo obtener sorpresa
+        int caso; // {tipo, avance fila, avance columna}
+        int mover[] = new int[2];
+        for (int i = 0; i < casilla.length; i++) {
+            for (int j = 0; j < casilla.length; j++) {
+                if (casilla[i][j].isSorpresa() == true) {
+                    caso = casilla[i][j].generarSorpresa();
+                    mover[0] = i;
+                    switch (caso) {
+                        case 1: //Avanza 1
+                            if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
+                                mover[1] = j - 1;
+                                if (mover[1] < 0) {
+                                    mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
+                                    mover[1] = (-1 * mover[1]) - 1;
+                                }
+                            } else {
+                                mover[1] = j + 1;
+                                if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
+                                    mover[0]--; //Para evitar una excepción, se debe evitar que la sorpresa esté en las tres ultimas casillas del tablero
+                                    mover[1] = (2 * casilla.length) - mover[1] + 1;
+                                }
+                            }
+                            break;
+                        case 2: //Avanza 2
+                            if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
+                                mover[1] = j - 2;
+                                if (mover[1] < 0) {
+                                    mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
+                                    mover[1] = (-1 * mover[1]) - 1;
+                                }
+                            } else {
+                                mover[1] = j + 2;
+                                if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
+                                    mover[0]--; //Para evitar una excepción, se debe evitar que la sorpresa esté en las tres ultimas casillas del tablero
+                                    mover[1] = (2 * casilla.length) - mover[1] + 1;
+                                }
+                            }
+                            break;
+                        case 3: //Retrocede 1
+                            if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
+                                mover[1] = j + 1;
+                                if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
+                                    mover[0]--; //Para evitar una excepción, se debe evitar que la sorpresa esté en las tres ultimas casillas del tablero
+                                    mover[1] = (2 * casilla.length) - mover[1] + 1;
+                                }
+                            } else {
+                                mover[1] = j - 1;
+                                if (mover[1] < 0) {
+                                    mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
+                                    mover[1] = (-1 * mover[1]) - 1;
+                                }                                
+                            }
+                            break;
+                        case 4: //Retrocede 2
+                            if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
+                                mover[1] = j + 1;
+                                if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
+                                    mover[0]--; //Para evitar una excepción, se debe evitar que la sorpresa esté en las tres ultimas casillas del tablero
+                                    mover[1] = (2 * casilla.length) - mover[1] + 1;
+                                }
+                            } else {
+                                mover[1] = j - 1;
+                                if (mover[1] < 0) {
+                                    mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
+                                    mover[1] = (-1 * mover[1]) - 1;
+                                }                                
+                            }
+                            break;
+                    }
+                    jugador.setPosicion(mover);
+                }
+            }
+        }
+    }
 }
