@@ -11,6 +11,8 @@ package datos;
  */
 public class Ficha {
     private String color;
+    public static  String colores[] = {"amarillo", "azul", "rojo","verde"}; 
+
 
     public Ficha(String color) {
         this.color = color;
