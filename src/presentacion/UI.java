@@ -47,20 +47,23 @@ public class UI {
                     }
                 }
 
+                String impresion;
                 if (c[i][j].isSorpresa()) {
-                    System.out.print("?\t");
+                    impresion = "?";
                 } else if (hayEscalera) {
-                    System.out.print("E\t");
+                    impresion = "E";
                     hayEscalera = false;
                 } else if (haySerpiente) {
-                    System.out.print("S\t");
+                    impresion = "S";
                     haySerpiente = false;
-                } else if (jugador1) {
-                    System.out.print("J1\t");
-                    jugador1 = false;
                 } else {
-                    System.out.print("-\t");
+                    impresion = "-";
                 }
+                if (jugador1) {
+                    impresion = "J1";
+                    jugador1 = false;
+                }
+                System.out.print(impresion + "\t");
             }
             System.out.println("");
         }
