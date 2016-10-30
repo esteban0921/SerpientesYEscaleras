@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @author LENOVO
  */
 public class UI {
+
     static Scanner s = new Scanner(System.in);
 
     public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
@@ -46,20 +47,20 @@ public class UI {
                     if ((s[k].getCasillaFinal()[0] == i) && (s[k].getCasillaFinal()[1] == j)) {
                         haySerpiente = true;
                     }
-                    
+
                     for (int l = 0; l < jugadores.length; l++) {
                         int pocision[] = jugadores[l].getPosicion();
                         if ((pocision[0] == i) && (pocision[1] == j)) {
-                            if(l==0){
+                            if (l == 0) {
                                 jugador1 = true;
                             }
-                            if(l==1){
+                            if (l == 1) {
                                 jugador2 = true;
                             }
-                            if(l==2){
+                            if (l == 2) {
                                 jugador3 = true;
                             }
-                            if(l==3){
+                            if (l == 3) {
                                 jugador4 = true;
                             }
                         }
@@ -78,22 +79,22 @@ public class UI {
                 } else {
                     impresion = "-";
                 }
-                
+
                 if (jugador1) {
                     impresion = "J1";
                     jugador1 = false;
                 }
-                
+
                 if (jugador2) {
                     impresion = "J2";
                     jugador2 = false;
                 }
-                
+
                 if (jugador3) {
                     impresion = "J3";
                     jugador3 = false;
                 }
-                
+
                 if (jugador4) {
                     impresion = "J4";
                     jugador4 = false;
@@ -102,18 +103,6 @@ public class UI {
             }
             System.out.println("");
         }
-    }
-
-public static int BuscarDatos(String[] Arreglo, String string) {
-        int result = -1;
-        int cant = 0;
-        for (String stringFounded : Arreglo) {
-            if (Arreglo[cant].equals(string)) {
-                result = cant;
-            }
-            cant++;
-        }
-        return result;
     }
 
     private static boolean isNumeric(String cadena) {
@@ -126,8 +115,8 @@ public static int BuscarDatos(String[] Arreglo, String string) {
     }
 
     public static String leerNombre() {
-        boolean correcto = true;
         String nombre;
+        boolean correcto;
         do {
             correcto = true;
             System.out.println("Digite el nombre:");
@@ -141,70 +130,68 @@ public static int BuscarDatos(String[] Arreglo, String string) {
                         correcto = false;
                     }
                 }
-                if (correcto = false) {
+                if (!correcto) {
                     System.out.println("El nombre no debe tener ningun numero\nPor favor vuelva a digitarlo\n");
                 }
             }
-        } while (correcto == false);
+        } while (!correcto);
         return nombre;
     }
-    
-    public static String LeerColorDeFicha() {
-        boolean correcto = true;
-        String colorDeFicha = "Color invalido";
-        int posicion = 0;
 
-        do {
-            colorDeFicha = "Color invalido";
-            System.out.println("Digite el color de la ficha");
-            colorDeFicha = s.nextLine();
-            if (colorDeFicha.length() > 3 && colorDeFicha.length() < 9) {
-                posicion = BuscarDatos(datos.Ficha.colores, colorDeFicha);
-                if (posicion < datos.Ficha.colores.length) {
-                    correcto = true;
-                }
-            } else {
-                for (int i = 0; i < colorDeFicha.length(); i++) {
-                    if (isNumeric(String.valueOf(colorDeFicha.charAt(i)))) {
-                        correcto = false;
-                    }
-                }
-                if (correcto == false) {
-                    System.out.println("El color no puede tener ningun caracter alfabetico");
-                }
-            }
-        } while (correcto);
-        return colorDeFicha;
-    }
-    
-    public static String LeerColorDeDado() {
-        boolean correcto = true;
-        String colorDeDado = "Color invalido";
-        int posicion = 0;
+    public static String leerColorFicha() {
+        boolean correcto;
+        int posicion = -1;
 
-        do {
-            colorDeDado = "Color invalido";
-            System.out.println("Digite el color del dado");
-            colorDeDado = s.nextLine();
-            if (colorDeDado.length() > 3 && colorDeDado.length() < 9) {
-                posicion = BuscarDatos(datos.Dado.colores, colorDeDado);
-                if (posicion < datos.Dado.colores.length) {
-                    correcto = true;
-                }
-            } else {
-                for (int i = 0; i < colorDeDado.length(); i++) {
-                    if (isNumeric(String.valueOf(colorDeDado.charAt(i)))) {
-                        correcto = false;
+        System.out.println("Seleccione el color de la ficha");
+        System.out.println("<1> Amarillo");
+        System.out.println("<2> Azul");
+        System.out.println("<3> Rojo");
+        System.out.println("<4> Verde");
+        while (posicion < 1 || posicion > 4) {
+            do {
+                correcto = true;
+                try {
+                    posicion = s.nextInt();
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("se debe ingresar un numero entero");
+                    if (s.hasNext()) {
+                        s.next();
                     }
+                    correcto = false;
                 }
-                if (correcto == false) {
-                    System.out.println("El color no puede tener ningun caracter alfabetico");
-                }
+            } while (!correcto);
+            if (posicion < 1 || posicion > 4) {
+                System.out.println("ingrese un numero valido");
             }
-        } while (correcto);
-        return colorDeDado;
+        }
+        return Ficha.colores[posicion - 1];
     }
 
-   
-    
+    public static String leerColorDado() {
+        boolean correcto;
+        int posicion = -1;
+
+        System.out.println("Seleccione el color del dado");
+        System.out.println("<1> Negro");
+        System.out.println("<2> Gris");
+        System.out.println("<3> Blano");
+        while (posicion < 1 || posicion > 3) {
+            do {
+                correcto = true;
+                try {
+                    posicion = s.nextInt();
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("se debe ingresar un numero entero");
+                    if (s.hasNext()) {
+                        s.next();
+                    }
+                    correcto = false;
+                }
+            } while (!correcto);
+            if (posicion < 1 || posicion > 3) {
+                System.out.println("ingrese un numero valido");
+            }
+        }
+        return Dado.colores[posicion - 1];
+    }
 }
