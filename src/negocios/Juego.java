@@ -161,12 +161,27 @@ public class Juego {
     public static void main(String[] args) {
 
         Tipo tipo1 = crearTipo1();
-        Jugador jugador1 = crearJugador(1, "Cristian", "roja");
-        Jugador jugador2 = crearJugador(2, "Brian", "azul");
-        Jugador jugador3 = crearJugador(3, "Jhon", "verde");
-        Jugador jugador4 = crearJugador(4, "Brayan", "amarillo");
-        Jugador jugadores[] = {jugador1, jugador2};
-        Dado dado = new Dado("rojo");
+        Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.leerColorFicha());
+        Jugador jugador2 = crearJugador(2, UI.leerNombre(), UI.leerColorFicha());
+        while (jugador2.getFicha().getColor().equals(jugador1.getFicha().getColor())) {
+            System.out.println("no es posible escoger este color");
+            jugador2.getFicha().setColor(UI.leerColorFicha());
+        }
+        Jugador jugador3 = crearJugador(3, UI.leerNombre(), UI.leerColorFicha());
+        while (jugador3.getFicha().getColor().equals(jugador1.getFicha().getColor())
+                || jugador3.getFicha().getColor().equals(jugador2.getFicha().getColor())) {
+            System.out.println("no es posible escoger este color");
+            jugador3.getFicha().setColor(UI.leerColorFicha());
+        }
+        Jugador jugador4 = crearJugador(4, UI.leerNombre(), UI.leerColorFicha());
+        while (jugador4.getFicha().getColor().equals(jugador1.getFicha().getColor())
+                || jugador4.getFicha().getColor().equals(jugador2.getFicha().getColor())
+                || jugador4.getFicha().getColor().equals(jugador3.getFicha().getColor())) {
+            System.out.println("no es posible escoger este color");
+            jugador4.getFicha().setColor(UI.leerColorFicha());
+        }
+        Jugador jugadores[] = {jugador1,jugador2};
+        Dado dado = new Dado(UI.leerColorDado());
         
         Juego juego = new Juego(tipo1,jugadores,dado);
 
