@@ -15,7 +15,7 @@ public class Dado {
 
     private String color;
     private int numeroObtenido;
-    public static  String colores[] = {"amarillo", "azul", "rojo","verde"}; 
+    public static  String colores[] = {"negro", "gris", "blanco"}; 
 
 
     public Dado(String color) {
