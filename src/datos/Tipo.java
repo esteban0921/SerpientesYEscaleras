@@ -10,7 +10,7 @@ package datos;
  * @author LENOVO
  */
 public class Tipo {
-    private int tamañoTablero;
+    private int tamanoTablero;
     private Tablero tablero;
     private boolean unJugador;
     private int numeroCasillasSorpresa;
@@ -18,8 +18,8 @@ public class Tipo {
     private int numeroSerpientes;
     private boolean fantasmas;
     
-    public Tipo (int tamañoTablero, Tablero tablero, boolean unJugador, int numeroCasillasSorpresa, int numeroEscaleras, int numeroSerpientes, boolean fantasmas){
-        this.tamañoTablero = tamañoTablero;
+    public Tipo (int tamanoTablero, Tablero tablero, boolean unJugador, int numeroCasillasSorpresa, int numeroEscaleras, int numeroSerpientes, boolean fantasmas){
+        this.tamanoTablero = tamanoTablero;
         this.tablero = tablero;
         this.unJugador = unJugador;
         this.numeroCasillasSorpresa = numeroCasillasSorpresa;
@@ -28,8 +28,8 @@ public class Tipo {
         this.fantasmas = fantasmas;
     }
 
-    public int getTamañoTablero() {
-        return tamañoTablero;
+    public int getTamanoTablero() {
+        return tamanoTablero;
     }
 
     public Tablero getTablero() {
@@ -55,9 +55,4 @@ public class Tipo {
     public boolean isFantasmas() {
         return fantasmas;
     }
-    
-    
-    
-    
-    
 }

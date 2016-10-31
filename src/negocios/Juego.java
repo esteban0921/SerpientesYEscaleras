@@ -159,6 +159,16 @@ public class Juego {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+/* 	
+    	int opcion = 1;
+    
+		UI.Menu(opcion);
+		opcion++;
+		UI.Menu(opcion);
+		opcion = 1;
+*/
+    	
+
 
         Tipo tipo1 = crearTipo1();
         Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.leerColorFicha());
@@ -224,7 +234,6 @@ public class Juego {
         Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador2);
         Movimiento.esGanador(jugador2);
         
-        UI.imprimirTablero(tipo1.getTablero(), jugadores);
+        UI.imprimirTablero(tipo1.getTablero(), jugadores);       
     }
-
 }

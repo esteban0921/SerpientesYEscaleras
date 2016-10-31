@@ -15,7 +15,41 @@ import java.util.Scanner;
 public class UI {
 
     static Scanner s = new Scanner(System.in);
-
+/*  
+    public static String Menu(int menu){
+    	String ingreso = null;
+    	while(menu <= 2){
+    		
+    		boolean validar = true;
+        	switch(menu){
+        	case 1:
+                System.out.println("*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*"
+                		+ "\n\nSeleccione una opción: "
+                        + "\n1. Modo clásico 8 x 8."
+                        + "\n2. Modo clásico 10 x 10."
+                        + "\n3. Modo clásico 12 x 12."
+                        + "\n4. Modo supervivencia.");
+        		break;
+        	case 2: 
+                System.out.println("Seleccione el número de jugadores (1-4): ");
+        		break;
+        	}
+        	ingreso = s.nextLine();
+        	
+            for (int i = 0; i < ingreso.length(); i++) {
+                if (!isNumeric(String.valueOf(ingreso.charAt(i)))) {
+                    validar = false;
+                    if (!validar) {
+                        System.out.println("Digite un número válido (1-4)\n");
+                    }
+                }
+            }
+    	}
+    	
+		return ingreso;
+    }
+    
+*/
     public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
         Casilla c[][] = tablero.getCasillas();
         Escalera e[] = tablero.getEscaleras();
