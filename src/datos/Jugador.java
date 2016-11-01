@@ -36,8 +36,8 @@ public class Jugador {
         return ficha;
     }
     
-    public void setPosicion(int[] pocision){
-        this.posicion = pocision;
+    public void setPosicion(int[] posicion){
+        this.posicion = posicion;
     }
     
     public int[] getPosicion() {

@@ -6,6 +6,8 @@
 package presentacion;
 
 import datos.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,45 +16,55 @@ import java.util.Scanner;
  */
 public class UI {
 
-    static Scanner s = new Scanner(System.in);
+    static Scanner s = new Scanner(System.in); //Esto es redundante
     static Scanner leer = new Scanner(System.in);
 
-    /*  
+    
     public static String Menu(int menu){
+    	if (menu == 1) System.out.println("*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*");
     	String ingreso = null;
-    	while(menu <= 2){
-    		
-    		boolean validar = true;
-        	switch(menu){
-        	case 1:
-                System.out.println("*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*"
-                		+ "\n\nSeleccione una opciï¿½n: "
-                        + "\n1. Modo clï¿½sico 8 x 8."
-                        + "\n2. Modo clï¿½sico 10 x 10."
-                        + "\n3. Modo clï¿½sico 12 x 12."
-                        + "\n4. Modo supervivencia.");
-        		break;
-        	case 2: 
-                System.out.println("Seleccione el nï¿½mero de jugadores (1-4): ");
-        		break;
-        	}
-        	ingreso = s.nextLine();
-        	
-            for (int i = 0; i < ingreso.length(); i++) {
-                if (!isNumeric(String.valueOf(ingreso.charAt(i)))) {
-                    validar = false;
-                    if (!validar) {
-                        System.out.println("Digite un nï¿½mero vï¿½lido (1-4)\n");
-                    }
-                }
-            }
-    	}
+		boolean validar = false;
+		
+		switch(menu){
+		case 1: System.out.println("\nSeleccione un modo de juego: "
+				+ "\n<1> Modo clï¿½sico."
+				+ "\n<2> Modo supervivencia.");
+		break;
+		case 2: //Seleccionar tamaño
+			System.out.println("\nSeleccione el tamaño del tablero: "
+					+ "\n<1> 8 x 8."
+					+ "\n<2> 10 x 10."
+					+ "\n<3> 12 x 12.");
+			break;
+		case 3: //Seleccionar jugadores para cualquiera de los dos juegos. Cual es el modo de un jugador?
+			System.out.println("Seleccione el nï¿½mero de jugadores (2-4): ");
+			break;
+		}
+		
+		while(!validar){
+			validar = true;
+			ingreso = s.nextLine(); //Revisar en caso de no almacenar bien.
+			for (int i = 0; i < ingreso.length(); i++) {
+				if (!isNumeric(String.valueOf(ingreso.charAt(i)))) {
+					validar = false;
+					i = ingreso.length();
+				}
+				else if(i == ingreso.length() - 1){
+					if(menu == 1 && ((Integer.parseInt(ingreso) < 1) || (Integer.parseInt(ingreso) > 2))) validar = false;
+					if(menu == 2 && ((Integer.parseInt(ingreso) < 1) || (Integer.parseInt(ingreso) > 3))) validar = false;
+					if(menu == 3 && ((Integer.parseInt(ingreso) < 2) || (Integer.parseInt(ingreso) > 4))) validar = false;
+				}
+			}
+			if(menu == 1 && !validar) System.err.print("Digite un nï¿½mero vï¿½lido (1-2): ");
+			if(menu == 2 && !validar) System.err.print("Digite un nï¿½mero vï¿½lido (1-3): ");
+			if(menu == 3 && !validar) System.err.print("Digite un nï¿½mero vï¿½lido (2-4): ");
+		}
     	
 		return ingreso;
     }
     
-     */
-    public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
+     
+    public static void imprimirTablero(Tablero tablero, ArrayList<Jugador> jugadores) {
         Casilla c[][] = tablero.getCasillas();
         Escalera e[] = tablero.getEscaleras();
         boolean hayEscalera = false;
@@ -84,8 +96,8 @@ public class UI {
                         haySerpiente = true;
                     }
 
-                    for (int l = 0; l < jugadores.length; l++) {
-                        int pocision[] = jugadores[l].getPosicion();
+                    for (int l = 0; l < jugadores.size(); l++) {
+                        int pocision[] = jugadores.get(l).getPosicion();
                         if ((pocision[0] == i) && (pocision[1] == j)) {
                             if (l == 0) {
                                 jugador1 = true;
@@ -150,15 +162,16 @@ public class UI {
         }
     }
 
-    public static String leerNombre() {
+    public static String leerNombre(int n) {
         String nombre;
         boolean correcto;
         do {
+        	System.out.println("Jugador " + n + ": \n");
             correcto = true;
             System.out.println("Digite el nombre:");
             nombre = leer.nextLine();
             if (nombre.length() < 5 || nombre.length() > 15) {
-                System.out.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
+                System.err.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
                 correcto = false;
             } else {
                 for (int i = 0; i < nombre.length(); i++) {
@@ -167,7 +180,7 @@ public class UI {
                     }
                 }
                 if (!correcto) {
-                    System.out.println("El nombre no debe tener ningun numero\nPor favor vuelva a digitarlo\n");
+                    System.err.println("El nombre no debe tener ningun numero\nPor favor vuelva a digitarlo\n");
                 }
             }
         } while (!correcto);
@@ -189,16 +202,12 @@ public class UI {
                 try {
                     posicion = s.nextInt();
                 } catch (java.util.InputMismatchException e) {
-                    System.out.println("se debe ingresar un numero entero");
-                    if (s.hasNext()) {
-                        s.next();
-                    }
+                    System.err.println("Se debe ingresar un numero entero");
+                    if (s.hasNext()) s.next();
                     correcto = false;
                 }
             } while (!correcto);
-            if (posicion < 1 || posicion > 4) {
-                System.out.println("ingrese un numero valido");
-            }
+            if (posicion < 1 || posicion > 4) System.err.println("ingrese un numero valido");
         }
         return Ficha.colores[posicion - 1];
     }
@@ -217,7 +226,7 @@ public class UI {
                 try {
                     posicion = s.nextInt();
                 } catch (java.util.InputMismatchException e) {
-                    System.out.println("se debe ingresar un numero entero");
+                    System.err.println("se debe ingresar un numero entero");
                     if (s.hasNext()) {
                         s.next();
                     }
@@ -225,7 +234,7 @@ public class UI {
                 }
             } while (!correcto);
             if (posicion < 1 || posicion > 3) {
-                System.out.println("ingrese un numero valido");
+                System.err.println("ingrese un numero valido");
             }
         }
         return Dado.colores[posicion - 1];
@@ -238,5 +247,15 @@ public class UI {
         fin = s.nextLine();
         return !(fin == "T" || fin == "t");
     }
+
+
+	public static void error(String error) {
+		switch(error){
+		case "color":
+			System.err.println();
+			break;
+		}
+		
+	}
 
 }

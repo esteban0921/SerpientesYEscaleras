@@ -5,6 +5,12 @@
  */
 package negocios;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 import datos.*;
 import presentacion.UI;
 
@@ -15,16 +21,16 @@ import presentacion.UI;
 public class Juego {
 
     private Tipo tipo;
-    private Jugador jugadores[];
+    private ArrayList <Jugador> jugadores;
     private Dado dado;
 
-    public Juego(Tipo tipo, Jugador[] jugadores, Dado dado) {
+    public Juego(Tipo tipo, ArrayList <Jugador> jugadores, Dado dado) {
         this.tipo = tipo;
         this.jugadores = jugadores;
         this.dado = dado;
     }
 
-    public static Tipo crearTipo1() { //10*10
+    public static Tipo crearTipo1() { //10x10
         int casillaInicioS1[] = {2, 6};
         int casillaFinalS1[] = {6, 8};
         Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
@@ -63,7 +69,7 @@ public class Juego {
         return tipo1;
     }
 
-    public static Tipo crearTipo2() { //8*8
+    public static Tipo crearTipo2() { //8x8
         int casillaInicioS1[] = {0, 1};
         int casillaFinalS1[] = {2, 3};
         Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
@@ -167,75 +173,103 @@ public class Juego {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Tipo tipo = crearTipo1();
-        
-        System.out.println("Jugador 1:");
-        Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.leerColorFicha());
-        System.out.println("Jugador 2:");
-        Jugador jugador2 = crearJugador(2, UI.leerNombre(), UI.leerColorFicha());
-        while (jugador2.getFicha().getColor().equals(jugador1.getFicha().getColor())) {
-            System.out.println("no es posible escoger este color");
-            jugador2.getFicha().setColor(UI.leerColorFicha());
-        }
-        System.out.println("Jugador 3:");
-        Jugador jugador3 = crearJugador(3, UI.leerNombre(), UI.leerColorFicha());
-        while (jugador3.getFicha().getColor().equals(jugador1.getFicha().getColor())
-                || jugador3.getFicha().getColor().equals(jugador2.getFicha().getColor())) {
-            System.out.println("no es posible escoger este color");
-            jugador3.getFicha().setColor(UI.leerColorFicha());
-        }
-        System.out.println("Jugador 4:");
-        Jugador jugador4 = crearJugador(4, UI.leerNombre(), UI.leerColorFicha());
-        while (jugador4.getFicha().getColor().equals(jugador1.getFicha().getColor())
-                || jugador4.getFicha().getColor().equals(jugador2.getFicha().getColor())
-                || jugador4.getFicha().getColor().equals(jugador3.getFicha().getColor())) {
-            System.out.println("no es posible escoger este color");
-            jugador4.getFicha().setColor(UI.leerColorFicha());
-        }
-        Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
-
-        Dado dado = new Dado(UI.leerColorDado());
-
-        Juego juego = new Juego(tipo, jugadores, dado);
-
-        int[] posicionJugador1 = {9, -1};
-        jugador1.setPosicion(posicionJugador1);
-        int[] posicionJugador2 = {9, -1};
-        jugador2.setPosicion(posicionJugador2);
-        int[] posicionJugador3 = {9, -1};
-        jugador3.setPosicion(posicionJugador3);
-        int[] posicionJugador4 = {9, -1};
-        jugador4.setPosicion(posicionJugador4);
-        
-        
-        Turno.setNumeroDeJugadores(4);
-        
-        boolean JuegoTerminado = false;
-        while (!JuegoTerminado) {
-            switch (Turno.getTurnoDe()) {
-                case 1:
-                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[0], dado);
-                    Turno.CambiarTurno();
-                    break;
-                case 2:
-                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[1], dado);
-                    Turno.CambiarTurno();
-                    break;
-                case 3:
-                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[2], dado);
-                    Turno.CambiarTurno();
-                    break;
-                case 4:
-                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[3], dado);
-                    Turno.CambiarTurno();
-                    break;
-
-                default:
-                    System.out.println("No hay m√°s turnos");
-                    break;
-            }
-            UI.imprimirTablero(tipo.getTablero(), jugadores);
-        }
+    	boolean jugar = true, colorRepetido = true;
+    	int opcion, numJugadores;
+    	boolean fantasma; //Donde se coloca?
+    	Tipo tipo;
+    	int[] posicionJugador = {0, 0};
+    	
+    	ArrayList <Jugador> jugadores = new ArrayList<Jugador>();
+    	
+    	while(jugar){
+    		fantasma = false;
+    		opcion = 1;
+    		if(UI.Menu(opcion) == "2") fantasma = true;
+    		opcion++;
+    		switch(UI.Menu(opcion)){
+    			case "1":
+    				tipo = crearTipo1();
+    				break;
+    			case "2":
+    				tipo = crearTipo2();
+    				break;
+    			default:
+    				tipo = crearTipo3();
+    				break;
+    		}
+    		opcion++;
+    		numJugadores = Integer.parseInt(UI.Menu(opcion));
+    		
+    		if(!jugadores.isEmpty()) jugadores.clear();
+    		
+    		
+    		for(int i = 0; i < numJugadores; i++){
+    			jugadores.add(i,crearJugador(i + 1, UI.leerNombre(i + 1), UI.leerColorFicha()));
+    			if(i >= 1){
+    				while(colorRepetido){
+    					if((i == 1) && !((jugadores.get(1).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
+    					else if((i == 2) && !(jugadores.get(2).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor()))
+    		    				|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
+    					else if((i == 3) && !(jugadores.get(2).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor()))
+    		    				|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))
+    							|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
+    					else {
+    						UI.error("color");
+    						jugadores.get(i).getFicha().setColor(UI.leerColorFicha());
+    					}
+    				}
+    			}
+    		}
+    		
+    		Dado dado = new Dado(UI.leerColorDado());
+    		
+    		//Juego juego = new Juego(tipo, jugadores, dado); //Por lo visto no sirve de nada
+    		
+    		switch(tipo.getTamanoTablero()){
+    			case 64:
+    				posicionJugador[0] = 7;
+    				break;
+    			case 100:
+    				posicionJugador[0] = 9;
+    				break;
+    			case 144:
+    				posicionJugador[0] = 13;
+    				break;
+    		}
+    		posicionJugador[1] = -1;
+    		
+    		for (int i = 0; i < jugadores.size(); i++) {
+    			jugadores.get(i).setPosicion(posicionJugador);
+			}		
+    		
+    		Turno.setNumeroDeJugadores(numJugadores);
+    		
+    		boolean JuegoTerminado = false;
+    		while (!JuegoTerminado) {
+    			switch (Turno.getTurnoDe()) {
+    			case 1:
+    				JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(0), dado);
+    				Turno.CambiarTurno();
+    				break;
+    			case 2:
+    				JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(1), dado);
+    				Turno.CambiarTurno();
+    				break;
+    			case 3:
+    				JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(2), dado);
+    				Turno.CambiarTurno();
+    				break;
+    			case 4:
+    				JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(3), dado);
+    				Turno.CambiarTurno();
+    				break;
+    			default:
+    				//System.out.println("No hay m·s turnos"); //Se supone que jam·s sera diferente de estos valores.
+    				break;
+    			}
+    			UI.imprimirTablero(tipo.getTablero(), jugadores);
+    		}
+    	}
 
     }
 }
