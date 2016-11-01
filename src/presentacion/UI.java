@@ -15,7 +15,9 @@ import java.util.Scanner;
 public class UI {
 
     static Scanner s = new Scanner(System.in);
-/*  
+    static Scanner leer = new Scanner(System.in);
+
+    /*  
     public static String Menu(int menu){
     	String ingreso = null;
     	while(menu <= 2){
@@ -24,14 +26,14 @@ public class UI {
         	switch(menu){
         	case 1:
                 System.out.println("*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*"
-                		+ "\n\nSeleccione una opción: "
-                        + "\n1. Modo clásico 8 x 8."
-                        + "\n2. Modo clásico 10 x 10."
-                        + "\n3. Modo clásico 12 x 12."
+                		+ "\n\nSeleccione una opciï¿½n: "
+                        + "\n1. Modo clï¿½sico 8 x 8."
+                        + "\n2. Modo clï¿½sico 10 x 10."
+                        + "\n3. Modo clï¿½sico 12 x 12."
                         + "\n4. Modo supervivencia.");
         		break;
         	case 2: 
-                System.out.println("Seleccione el número de jugadores (1-4): ");
+                System.out.println("Seleccione el nï¿½mero de jugadores (1-4): ");
         		break;
         	}
         	ingreso = s.nextLine();
@@ -40,7 +42,7 @@ public class UI {
                 if (!isNumeric(String.valueOf(ingreso.charAt(i)))) {
                     validar = false;
                     if (!validar) {
-                        System.out.println("Digite un número válido (1-4)\n");
+                        System.out.println("Digite un nï¿½mero vï¿½lido (1-4)\n");
                     }
                 }
             }
@@ -49,7 +51,7 @@ public class UI {
 		return ingreso;
     }
     
-*/
+     */
     public static void imprimirTablero(Tablero tablero, Jugador jugadores[]) {
         Casilla c[][] = tablero.getCasillas();
         Escalera e[] = tablero.getEscaleras();
@@ -154,7 +156,7 @@ public class UI {
         do {
             correcto = true;
             System.out.println("Digite el nombre:");
-            nombre = s.nextLine();
+            nombre = leer.nextLine();
             if (nombre.length() < 5 || nombre.length() > 15) {
                 System.out.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
                 correcto = false;
