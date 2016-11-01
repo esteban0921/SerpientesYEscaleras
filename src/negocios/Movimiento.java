@@ -48,7 +48,7 @@ public class Movimiento {
                     mover[0] = i;
                     switch (caso) {
                         case 1: //Avanza 1
-                            System.out.println("Avanza una casilla");
+                            System.out.println("Casilla Sorpresa ¿¿??: Avanza una casilla");
                             if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
                                 mover[1] = j - 1;
                                 if (mover[1] < 0) {
@@ -64,7 +64,7 @@ public class Movimiento {
                             }
                             break;
                         case 2: //Avanza 2
-                            System.out.println("Avanza dos casilla");
+                            System.out.println("Casilla Sorpresa ¿¿??: Avanza dos casilla");
                             if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
                                 mover[1] = j - 2;
                                 if (mover[1] < 0) {
@@ -80,7 +80,7 @@ public class Movimiento {
                             }
                             break;
                         case 3: //Retrocede 1
-                            System.out.println("Retrocede una casilla");
+                            System.out.println("Casilla Sorpresa ¿¿??: Retrocede una casilla");
                             if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
                                 mover[1] = j + 1;
                                 if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
@@ -96,7 +96,7 @@ public class Movimiento {
                             }
                             break;
                         case 4: //Retrocede 2
-                            System.out.println("Retrocede dos casilla");
+                            System.out.println("Casilla Sorpresa ¿¿??: Retrocede dos casilla");
                             if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
                                 mover[1] = j + 2;
                                 if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
