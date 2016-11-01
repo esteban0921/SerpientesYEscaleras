@@ -37,14 +37,13 @@ public class Dado {
         this.numeroObtenido = (int) (azar.nextDouble() * 6 + 1);
     }
     
-    public void OprimirTecla() {
+    public void OprimirTecla(Jugador jugador) {
         Scanner sc = new Scanner (System.in);
-        System.out.println("Presione cualquier tecla para lanzar el dado");
+        System.out.println(jugador.getNombre() + ": Presione cualquier tecla para lanzar el dado");
         String tecla = sc.nextLine();
         switch (tecla) {
             default:
-                lanzarDado();
-
+                this.lanzarDado();
         }
     }
 }
