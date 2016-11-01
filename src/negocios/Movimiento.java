@@ -130,6 +130,11 @@ public class Movimiento {
             if (mover[1] < 0) {
                 mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
                 mover[1] = (-1 * mover[1]) - 1;
+                if(mover[0]<0){
+                    System.out.println("Te saliste del tablero, perdiste turno");
+                    mover[0] = jugador.getPosicion()[0];
+                    mover[1] = jugador.getPosicion()[1];
+                }
             }
         } else {
             mover[1] = jugador.getPosicion()[1] + numeroObtenido;
