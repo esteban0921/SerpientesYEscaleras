@@ -155,32 +155,36 @@ public class Juego {
         return jugador;
     }
 
+    public static boolean MovimientoYComprobar(Tipo tipo, Jugador jugador, Dado dado) {
+        Movimiento.moverFicha(tipo.getTablero().getCasillas(), jugador, dado);
+        Movimiento.comprobarEscalera(tipo.getTablero().getEscaleras(), jugador);
+        Movimiento.comprobarSerpiente(tipo.getTablero().getSerpientes(), jugador);
+        Movimiento.comprobarSorpresa(tipo.getTablero().getCasillas(), jugador);
+        return Movimiento.esGanador(jugador);
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /* 	
-    	int opcion = 1;
-    
-		UI.Menu(opcion);
-		opcion++;
-		UI.Menu(opcion);
-		opcion = 1;
-         */
-        String fin = null;
-        Tipo tipo1 = crearTipo1();
+        Tipo tipo = crearTipo1();
+        
+        System.out.println("Jugador 1:");
         Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.leerColorFicha());
+        System.out.println("Jugador 2:");
         Jugador jugador2 = crearJugador(2, UI.leerNombre(), UI.leerColorFicha());
         while (jugador2.getFicha().getColor().equals(jugador1.getFicha().getColor())) {
             System.out.println("no es posible escoger este color");
             jugador2.getFicha().setColor(UI.leerColorFicha());
         }
+        System.out.println("Jugador 3:");
         Jugador jugador3 = crearJugador(3, UI.leerNombre(), UI.leerColorFicha());
         while (jugador3.getFicha().getColor().equals(jugador1.getFicha().getColor())
                 || jugador3.getFicha().getColor().equals(jugador2.getFicha().getColor())) {
             System.out.println("no es posible escoger este color");
             jugador3.getFicha().setColor(UI.leerColorFicha());
         }
+        System.out.println("Jugador 4:");
         Jugador jugador4 = crearJugador(4, UI.leerNombre(), UI.leerColorFicha());
         while (jugador4.getFicha().getColor().equals(jugador1.getFicha().getColor())
                 || jugador4.getFicha().getColor().equals(jugador2.getFicha().getColor())
@@ -189,64 +193,49 @@ public class Juego {
             jugador4.getFicha().setColor(UI.leerColorFicha());
         }
         Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
+
         Dado dado = new Dado(UI.leerColorDado());
 
-        Juego juego = new Juego(tipo1, jugadores, dado);
+        Juego juego = new Juego(tipo, jugadores, dado);
 
         int[] posicionJugador1 = {9, -1};
         jugador1.setPosicion(posicionJugador1);
         int[] posicionJugador2 = {9, -1};
         jugador2.setPosicion(posicionJugador2);
-        int[] posicionJugador3 = {8, 3};
+        int[] posicionJugador3 = {9, -1};
         jugador3.setPosicion(posicionJugador3);
-        int[] posicionJugador4 = {6, 3};
+        int[] posicionJugador4 = {9, -1};
         jugador4.setPosicion(posicionJugador4);
+        
+        
+        Turno.setNumeroDeJugadores(4);
+        
+        boolean JuegoTerminado = false;
+        while (!JuegoTerminado) {
+            switch (Turno.getTurnoDe()) {
+                case 1:
+                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[0], dado);
+                    Turno.CambiarTurno();
+                    break;
+                case 2:
+                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[1], dado);
+                    Turno.CambiarTurno();
+                    break;
+                case 3:
+                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[2], dado);
+                    Turno.CambiarTurno();
+                    break;
+                case 4:
+                    JuegoTerminado = MovimientoYComprobar(tipo, jugadores[3], dado);
+                    Turno.CambiarTurno();
+                    break;
 
-        do {
-            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador1, dado);
-            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador1);
-            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador1);
-            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador1);
-
-            UI.imprimirTablero(tipo1.getTablero(), jugadores);
-            
-            if(Movimiento.esGanador(jugador1)){
-                break;
+                default:
+                    System.out.println("No hay más turnos");
+                    break;
             }
+            UI.imprimirTablero(tipo.getTablero(), jugadores);
+        }
 
-            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador2, dado);
-            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador2);
-            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador2);
-            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador2);
-
-            UI.imprimirTablero(tipo1.getTablero(), jugadores);
-            
-            if(Movimiento.esGanador(jugador2)){
-                break;
-            }
-
-            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador3, dado);
-            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador3);
-            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador3);
-            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador3);
-
-            UI.imprimirTablero(tipo1.getTablero(), jugadores);
-            
-            if(Movimiento.esGanador(jugador3)){
-                break;
-            }
-
-            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador4, dado);
-            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador4);
-            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador4);
-            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador4);
-
-            UI.imprimirTablero(tipo1.getTablero(), jugadores);
-            
-            if(Movimiento.esGanador(jugador4)) {
-                break;
-            }
-            
-        } while (UI.terminar());
     }
 }

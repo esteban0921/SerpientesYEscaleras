@@ -11,24 +11,23 @@ package negocios;
  */
 public class Turno {
 
-    public int numeroDeJugadores;
+    static private int numeroDeJugadores;
+    static private int turnoDe = 1;
 
-    private int turnoDe;
-
-    public Turno(int turnoDe) {
-        this.turnoDe = turnoDe;
-    }
-
-    public int ComprobarTurno() {
-        int turno = this.turnoDe;
-        turno++;
-        if (turno > this.numeroDeJugadores) {
-            turno = 1;
+    static public void CambiarTurno() {
+        turnoDe++;
+        if (turnoDe > numeroDeJugadores) {
+            turnoDe = 1;
         }
-        return turno;
     }
 
-    public int getTurnoDe() {
+    static public int getTurnoDe() {
         return turnoDe;
     }
+
+    public static void setNumeroDeJugadores(int numeroDeJugadores) {
+        Turno.numeroDeJugadores = numeroDeJugadores;
+    }
+    
+    
 }
