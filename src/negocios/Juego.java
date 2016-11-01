@@ -62,7 +62,7 @@ public class Juego {
         Tipo tipo1 = new Tipo(100, tablero, false, 5, escaleras.length, serpientes.length, false);
         return tipo1;
     }
-    
+
     public static Tipo crearTipo2() { //8*8
         int casillaInicioS1[] = {0, 1};
         int casillaFinalS1[] = {2, 3};
@@ -101,7 +101,7 @@ public class Juego {
         Tipo tipo2 = new Tipo(64, tablero, false, 5, escaleras.length, serpientes.length, false);
         return tipo2;
     }
-    
+
     public static Tipo crearTipo3() { //12*12
         int[] casillaInicioS1 = {0, 2};
         int[] casillaFinalS1 = {4, 0};
@@ -110,7 +110,7 @@ public class Juego {
         int[] casillaInicioS2 = {7, 11};
         int casillaFinalS2[] = {11, 8};
         Serpiente serpiente2 = new Serpiente(casillaInicioS2, casillaFinalS2);
-        
+
         int[] casillaInicioS3 = {4, 5};
         int casillaFinalS3[] = {9, 7};
         Serpiente serpiente3 = new Serpiente(casillaInicioS3, casillaFinalS3);
@@ -128,7 +128,7 @@ public class Juego {
         int casillaInicioE3[] = {3, 11};
         int casillaFinalE3[] = {0, 10};
         Escalera escalera3 = new Escalera(casillaInicioE3, casillaFinalE3);
-        
+
         Escalera escaleras[] = {escalera1, escalera2, escalera3};
 
         Casilla casillas[][] = new Casilla[12][12];
@@ -159,17 +159,15 @@ public class Juego {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-/* 	
+        /* 	
     	int opcion = 1;
     
 		UI.Menu(opcion);
 		opcion++;
 		UI.Menu(opcion);
 		opcion = 1;
-*/
-    	
-
-
+         */
+        String fin = null;
         Tipo tipo1 = crearTipo1();
         Jugador jugador1 = crearJugador(1, UI.leerNombre(), UI.leerColorFicha());
         Jugador jugador2 = crearJugador(2, UI.leerNombre(), UI.leerColorFicha());
@@ -190,10 +188,10 @@ public class Juego {
             System.out.println("no es posible escoger este color");
             jugador4.getFicha().setColor(UI.leerColorFicha());
         }
-        Jugador jugadores[] = {jugador1,jugador2};
+        Jugador jugadores[] = {jugador1, jugador2, jugador3, jugador4};
         Dado dado = new Dado(UI.leerColorDado());
-        
-        Juego juego = new Juego(tipo1,jugadores,dado);
+
+        Juego juego = new Juego(tipo1, jugadores, dado);
 
         int[] posicionJugador1 = {9, -1};
         jugador1.setPosicion(posicionJugador1);
@@ -203,37 +201,52 @@ public class Juego {
         jugador3.setPosicion(posicionJugador3);
         int[] posicionJugador4 = {6, 3};
         jugador4.setPosicion(posicionJugador4);
-        
-        Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador1, dado);
-        Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador1);
-        Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador1);
-        Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador1);
-        Movimiento.esGanador(jugador1);
 
-        UI.imprimirTablero(tipo1.getTablero(), jugadores);
-        
-        Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador2, dado);
-        Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador2);
-        Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador2);
-        Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador2);
-        Movimiento.esGanador(jugador2);
-        
-        UI.imprimirTablero(tipo1.getTablero(), jugadores);
-        
-        Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador1, dado);
-        Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador1);
-        Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador1);
-        Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador1);
-        Movimiento.esGanador(jugador1);
-        
-        UI.imprimirTablero(tipo1.getTablero(), jugadores);
-        
-        Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador2, dado);
-        Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador2);
-        Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador2);
-        Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador2);
-        Movimiento.esGanador(jugador2);
-        
-        UI.imprimirTablero(tipo1.getTablero(), jugadores);       
+        do {
+            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador1, dado);
+            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador1);
+            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador1);
+            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador1);
+
+            UI.imprimirTablero(tipo1.getTablero(), jugadores);
+            
+            if(Movimiento.esGanador(jugador1)){
+                break;
+            }
+
+            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador2, dado);
+            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador2);
+            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador2);
+            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador2);
+
+            UI.imprimirTablero(tipo1.getTablero(), jugadores);
+            
+            if(Movimiento.esGanador(jugador2)){
+                break;
+            }
+
+            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador3, dado);
+            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador3);
+            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador3);
+            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador3);
+
+            UI.imprimirTablero(tipo1.getTablero(), jugadores);
+            
+            if(Movimiento.esGanador(jugador3)){
+                break;
+            }
+
+            Movimiento.moverFicha(tipo1.getTablero().getCasillas(), jugador4, dado);
+            Movimiento.comprobarEscalera(tipo1.getTablero().getEscaleras(), jugador4);
+            Movimiento.comprobarSerpiente(tipo1.getTablero().getSerpientes(), jugador4);
+            Movimiento.comprobarSorpresa(tipo1.getTablero().getCasillas(), jugador4);
+
+            UI.imprimirTablero(tipo1.getTablero(), jugadores);
+            
+            if(Movimiento.esGanador(jugador4)) {
+                break;
+            }
+            
+        } while (UI.terminar());
     }
 }
