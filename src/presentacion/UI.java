@@ -230,4 +230,13 @@ public class UI {
         }
         return Dado.colores[posicion - 1];
     }
+
+    public static boolean terminar() {
+        String fin;
+        System.out.println("para terminar el juego presione la tecla T");
+        System.out.println("para jugar denuevo presione cualquier otra tecla");
+        fin = s.nextLine();
+        return !(fin == "T" || fin == "t");
+    }
+
 }
