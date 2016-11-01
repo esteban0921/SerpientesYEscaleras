@@ -119,7 +119,7 @@ public class Movimiento {
     }
 
     public static void moverFicha(Casilla[][] tablero, Jugador jugador, Dado dado) {
-        dado.OprimirTecla();
+        dado.OprimirTecla(jugador);
         int numeroObtenido = dado.getNumeroObtenido();
         System.out.println("Numero obtenido: " + numeroObtenido);
         int mover[] = new int[2];
