@@ -6,6 +6,7 @@
 package datos;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -34,5 +35,16 @@ public class Dado {
     public void lanzarDado() {
         Random azar = new Random();
         this.numeroObtenido = (int) (azar.nextDouble() * 6 + 1);
+    }
+    
+    public void OprimirTecla() {
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Presione cualquier tecla para lanzar el dado");
+        String tecla = sc.nextLine();
+        switch (tecla) {
+            default:
+                lanzarDado();
+
+        }
     }
 }
