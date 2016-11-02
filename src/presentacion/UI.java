@@ -16,8 +16,7 @@ import java.util.Scanner;
  */
 public class UI {
 
-    static Scanner s = new Scanner(System.in); //Esto es redundante
-    static Scanner leer = new Scanner(System.in);
+    static Scanner s = new Scanner(System.in);
 
     public static String Menu(int menu){
     	if (menu == 1) System.out.println("\n*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*");
@@ -29,8 +28,8 @@ public class UI {
 				+ "\n<1> Modo clasico."
 				+ "\n<2> Modo supervivencia.");
 		break;
-		case 2: //Seleccionar tamaño
-			System.out.println("\nSeleccione el tamaño del tablero: "
+		case 2: //Seleccionar tamaÃ±o
+			System.out.println("\nSeleccione el tamaÃ±o del tablero: "
 					+ "\n<1> 8 x 8."
 					+ "\n<2> 10 x 10."
 					+ "\n<3> 12 x 12.");
@@ -167,7 +166,7 @@ public class UI {
         	System.out.println("Jugador " + n + ": \n");
             correcto = true;
             System.out.print("Digite el nombre: ");
-            nombre = leer.nextLine();
+            nombre = s.nextLine();
             if (nombre.length() < 5 || nombre.length() > 15) {
                 System.err.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
                 correcto = false;
