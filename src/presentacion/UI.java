@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class UI {
 
     static Scanner s = new Scanner(System.in);
+    static Scanner leer = new Scanner(System.in);
 
     public static String Menu(int menu){
     	if (menu == 1) System.out.println("\n*-*-*-* SERPIENTES Y ESCALERAS UN *-*-*-*");
@@ -166,7 +167,7 @@ public class UI {
         	System.out.println("Jugador " + n + ": \n");
             correcto = true;
             System.out.print("Digite el nombre: ");
-            nombre = s.nextLine();
+            nombre = leer.nextLine();
             if (nombre.length() < 5 || nombre.length() > 15) {
                 System.err.println("El nombre debe tener minimo 5 caracteres y maximo 15\nDigite nuevamente su nombre");
                 correcto = false;
@@ -241,8 +242,8 @@ public class UI {
         String fin;
         System.out.println("Para terminar el juego presione la tecla T.");
         System.out.println("Para jugar de nuevo presione cualquier otra tecla.");
-        fin = s.nextLine();
-        return !(fin.equalsIgnoreCase("T"));
+        fin = leer.nextLine();
+        return !(fin.equalsIgnoreCase("T")||fin.equalsIgnoreCase("t"));
     }
 
 
