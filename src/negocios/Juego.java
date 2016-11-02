@@ -237,7 +237,7 @@ public class Juego {
     				posicionJugador[0] = 9;
     				break;
     			case 144:
-    				posicionJugador[0] = 13;
+    				posicionJugador[0] = 11;
     				break;
     		}
     		posicionJugador[1] = -1;
@@ -268,7 +268,7 @@ public class Juego {
     				Turno.CambiarTurno();
     				break;
     			default:
-    				//System.out.println("No hay más turnos"); //Se supone que jamás sera diferente de estos valores.
+    				//System.out.println("No hay mï¿½s turnos"); //Se supone que jamï¿½s sera diferente de estos valores.
     				break;
     			}
     			UI.imprimirTablero(tipo.getTablero(), jugadores);
