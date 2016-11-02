@@ -30,46 +30,7 @@ public class Juego {
         this.dado = dado;
     }
 
-    public static Tipo crearTipo1() { //10x10
-        int casillaInicioS1[] = {2, 6};
-        int casillaFinalS1[] = {6, 8};
-        Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
-
-        int casillaInicioS2[] = {0, 1};
-        int casillaFinalS2[] = {5, 0};
-        Serpiente serpiente2 = new Serpiente(casillaInicioS2, casillaFinalS2);
-
-        Serpiente serpientes[] = {serpiente1, serpiente2};
-
-        int casillaInicioE1[] = {9, 2};
-        int casillaFinalE1[] = {4, 3};
-        Escalera escalera1 = new Escalera(casillaInicioE1, casillaFinalE1);
-
-        int casillaInicioE2[] = {4, 9};
-        int casillaFinalE2[] = {1, 8};
-        Escalera escalera2 = new Escalera(casillaInicioE2, casillaFinalE2);
-
-        Escalera escaleras[] = {escalera1, escalera2};
-
-        Casilla casillas[][] = new Casilla[10][10];
-        for (int i = 0; i < casillas.length; i++) {
-            for (int j = 0; j < casillas.length; j++) {
-                casillas[i][j] = new Casilla();
-            }
-        }
-        casillas[5][5].setSorpresa(true);
-        casillas[2][2].setSorpresa(true);
-        casillas[7][7].setSorpresa(true);
-        casillas[6][1].setSorpresa(true);
-        casillas[3][8].setSorpresa(true);
-
-        Tablero tablero = new Tablero(casillas, escaleras, serpientes);
-
-        Tipo tipo1 = new Tipo(100, tablero, false, 5, escaleras.length, serpientes.length, false);
-        return tipo1;
-    }
-
-    public static Tipo crearTipo2() { //8x8
+    public static Tipo crearTipo1() { //8x8
         int casillaInicioS1[] = {0, 1};
         int casillaFinalS1[] = {2, 3};
         Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
@@ -106,6 +67,45 @@ public class Juego {
 
         Tipo tipo2 = new Tipo(64, tablero, false, 5, escaleras.length, serpientes.length, false);
         return tipo2;
+    }
+    
+    public static Tipo crearTipo2() { //10x10
+        int casillaInicioS1[] = {2, 6};
+        int casillaFinalS1[] = {6, 8};
+        Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
+
+        int casillaInicioS2[] = {0, 1};
+        int casillaFinalS2[] = {5, 0};
+        Serpiente serpiente2 = new Serpiente(casillaInicioS2, casillaFinalS2);
+
+        Serpiente serpientes[] = {serpiente1, serpiente2};
+
+        int casillaInicioE1[] = {9, 2};
+        int casillaFinalE1[] = {4, 3};
+        Escalera escalera1 = new Escalera(casillaInicioE1, casillaFinalE1);
+
+        int casillaInicioE2[] = {4, 9};
+        int casillaFinalE2[] = {1, 8};
+        Escalera escalera2 = new Escalera(casillaInicioE2, casillaFinalE2);
+
+        Escalera escaleras[] = {escalera1, escalera2};
+
+        Casilla casillas[][] = new Casilla[10][10];
+        for (int i = 0; i < casillas.length; i++) {
+            for (int j = 0; j < casillas.length; j++) {
+                casillas[i][j] = new Casilla();
+            }
+        }
+        casillas[5][5].setSorpresa(true);
+        casillas[2][2].setSorpresa(true);
+        casillas[7][7].setSorpresa(true);
+        casillas[6][1].setSorpresa(true);
+        casillas[3][8].setSorpresa(true);
+
+        Tablero tablero = new Tablero(casillas, escaleras, serpientes);
+
+        Tipo tipo1 = new Tipo(100, tablero, false, 5, escaleras.length, serpientes.length, false);
+        return tipo1;
     }
 
     public static Tipo crearTipo3() { //12*12
@@ -182,6 +182,7 @@ public class Juego {
     	ArrayList <Jugador> jugadores = new ArrayList<Jugador>();
     	
     	while(jugar){
+    		
     		fantasma = false;
     		opcion = 1;
     		if(UI.Menu(opcion) == "2") fantasma = true;
@@ -199,32 +200,35 @@ public class Juego {
     		}
     		opcion++;
     		numJugadores = Integer.parseInt(UI.Menu(opcion));
+    		System.out.println(numJugadores);
     		
     		if(!jugadores.isEmpty()) jugadores.clear();
     		
     		
     		for(int i = 0; i < numJugadores; i++){
-    			jugadores.add(i,crearJugador(i + 1, UI.leerNombre(i + 1), UI.leerColorFicha()));
-    			if(i >= 1){
+    			jugadores.add(i, crearJugador(i + 1, UI.leerNombre(i + 1), UI.leerColorFicha()));
+    			if(i > 0){
     				while(colorRepetido){
-    					if((i == 1) && !((jugadores.get(1).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
-    					else if((i == 2) && !(jugadores.get(2).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor()))
-    		    				|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
-    					else if((i == 3) && !(jugadores.get(2).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor()))
-    		    				|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))
-    							|| ((jugadores.get(2).getFicha().getColor()).equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = false;
-    					else {
-    						UI.error("color");
+    					if((i == 1) && (jugadores.get(1).getFicha().getColor().equals(jugadores.get(0).getFicha().getColor()))) colorRepetido = true;
+    					else if((i == 2) && (jugadores.get(2).getFicha().getColor().equals(jugadores.get(0).getFicha().getColor())
+    							|| (jugadores.get(2).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor())))) colorRepetido = true;
+    					else if((i == 3) && (jugadores.get(3).getFicha().getColor().equals(jugadores.get(0).getFicha().getColor())
+    							|| (jugadores.get(3).getFicha().getColor().equals(jugadores.get(1).getFicha().getColor()))
+    							|| (jugadores.get(3).getFicha().getColor().equals(jugadores.get(2).getFicha().getColor())))) colorRepetido = true;
+    					else colorRepetido = false;
+    					if(colorRepetido == true){
+    						UI.error();
     						jugadores.get(i).getFicha().setColor(UI.leerColorFicha());
     					}
     				}
+    				colorRepetido = true;
     			}
     		}
     		
     		Dado dado = new Dado(UI.leerColorDado());
     		
     		//Juego juego = new Juego(tipo, jugadores, dado); //Por lo visto no sirve de nada
-    		
+
     		switch(tipo.getTamanoTablero()){
     			case 64:
     				posicionJugador[0] = 7;
@@ -269,7 +273,9 @@ public class Juego {
     			}
     			UI.imprimirTablero(tipo.getTablero(), jugadores);
     		}
+    		
+    		jugar = (UI.terminar());
+    		
     	}
-
     }
 }

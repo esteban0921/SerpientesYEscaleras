@@ -28,6 +28,4 @@ public class Turno {
     public static void setNumeroDeJugadores(int numeroDeJugadores) {
         Turno.numeroDeJugadores = numeroDeJugadores;
     }
-    
-    
 }

@@ -7,6 +7,7 @@ package datos;
 
 import java.util.Random;
 import java.util.Scanner;
+import presentacion.UI;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Dado {
     
     public void OprimirTecla(Jugador jugador) {
         Scanner sc = new Scanner (System.in);
-        System.out.println(jugador.getNombre() + ": Presione cualquier tecla para lanzar el dado");
+        UI.mensaje(5, jugador.getNombre());
         String tecla = sc.nextLine();
         switch (tecla) {
             default:

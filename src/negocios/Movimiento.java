@@ -6,16 +6,18 @@
 package negocios;
 
 import datos.*;
+import presentacion.UI;
 
 /**
  *
  * @author LENOVO
  */
 public class Movimiento {
+	
 
     public static boolean esGanador(Jugador jugador) {
         if ((jugador.getPosicion()[0] == 0) && (jugador.getPosicion()[1] == 0)) {
-            System.out.println("Has Ganado el juego " + jugador.getNombre() + "... Felicitaciones!");
+        	UI.mensaje(1, jugador.getNombre());
             return true;
         } else {
             return false;
@@ -48,7 +50,7 @@ public class Movimiento {
                     mover[0] = i;
                     switch (caso) {
                         case 1: //Avanza 1
-                            System.out.println("Casilla Sorpresa ¿¿??: Avanza una casilla");
+                            UI.mensaje(2, "1");
                             if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
                                 mover[1] = j - 1;
                                 if (mover[1] < 0) {
@@ -64,7 +66,7 @@ public class Movimiento {
                             }
                             break;
                         case 2: //Avanza 2
-                            System.out.println("Casilla Sorpresa ¿¿??: Avanza dos casilla");
+                        	UI.mensaje(2, "2");
                             if (i % 2 == 0) { // Su avance de casilla es el retroceso de la columna de la matriz
                                 mover[1] = j - 2;
                                 if (mover[1] < 0) {
@@ -80,7 +82,7 @@ public class Movimiento {
                             }
                             break;
                         case 3: //Retrocede 1
-                            System.out.println("Casilla Sorpresa ¿¿??: Retrocede una casilla");
+                        	UI.mensaje(2, "3");
                             if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
                                 mover[1] = j + 1;
                                 if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
@@ -96,8 +98,8 @@ public class Movimiento {
                             }
                             break;
                         case 4: //Retrocede 2
-                            System.out.println("Casilla Sorpresa ¿¿??: Retrocede dos casilla");
-                            if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
+                        	UI.mensaje(2, "4");
+                        	if (i % 2 == 0) { // Su retroceso de casilla es el avance de la columna de la matriz
                                 mover[1] = j + 2;
                                 if (mover[1] >= casilla.length) { // Su avance de casilla es el avance de la columna de la matriz
                                     mover[0]--; //Para evitar una excepción, se debe evitar que la sorpresa esté en las tres ultimas casillas del tablero
@@ -121,7 +123,7 @@ public class Movimiento {
     public static void moverFicha(Casilla[][] tablero, Jugador jugador, Dado dado) {
         dado.OprimirTecla(jugador);
         int numeroObtenido = dado.getNumeroObtenido();
-        System.out.println("Numero obtenido: " + numeroObtenido);
+        UI.mensaje(3, String.valueOf(numeroObtenido));
         int mover[] = new int[2];
         mover[0] = jugador.getPosicion()[0];
 
@@ -130,8 +132,8 @@ public class Movimiento {
             if (mover[1] < 0) {
                 mover[0]--; //Teniendo en cuenta que para subir de fila el tablero se debe disminuir la coordenada fila del arreglo.
                 mover[1] = (-1 * mover[1]) - 1;
-                if(mover[0]<0){
-                    System.out.println("Te saliste del tablero, perdiste turno");
+                if(mover[0] < 0){
+                	UI.mensaje(4, "salir");
                     mover[0] = jugador.getPosicion()[0];
                     mover[1] = jugador.getPosicion()[1];
                 }
