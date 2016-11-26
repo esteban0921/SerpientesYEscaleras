@@ -24,18 +24,15 @@ public class Movimiento {
         }
     }
 
-    public static void comprobarEscalera(Escalera[] escaleras, Jugador jugador) {
-        for (int i = 0; i < escaleras.length; i++) {
-            if ((escaleras[i].getCasillaInicio()[0] == jugador.getPosicion()[0]) && (escaleras[i].getCasillaInicio()[1] == jugador.getPosicion()[1])) {
-                jugador.setPosicion(escaleras[i].getCasillaFinal());
-            }
-        }
-    }
-
-    public static void comprobarSerpiente(Serpiente[] serpientes, Jugador jugador) {
-        for (int i = 0; i < serpientes.length; i++) {
-            if ((serpientes[i].getCasillaInicio()[0] == jugador.getPosicion()[0]) && (serpientes[i].getCasillaInicio()[1] == jugador.getPosicion()[1])) {
-                jugador.setPosicion(serpientes[i].getCasillaFinal());
+    public static void comprobarCaminoYMover(Camino[] camino, Jugador jugador) {
+        for (int i = 0; i < camino.length; i++) {
+            if ((camino[i].getCasillaInicio()[0] == jugador.getPosicion()[0]) && (camino[i].getCasillaInicio()[1] == jugador.getPosicion()[1])) {
+                jugador.setPosicion(camino[i].getCasillaFinal());
+                if((camino[i].getCasillaInicio()[0])>(camino[i].getCasillaFinal()[0])){
+                    UI.mensaje(6, "escalera");
+                }else{
+                    UI.mensaje(6, "serpiente");
+                }
             }
         }
     }
