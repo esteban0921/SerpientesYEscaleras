@@ -188,19 +188,43 @@ public class Juego {
     }
 
     public static Tipo crearTipo3() { //12*12
-        int[] casillaInicioS1 = {0, 2};
-        int[] casillaFinalS1 = {4, 0};
+        int[] casillaInicioS1 = {9, 5};
+        int[] casillaFinalS1 = {11, 2};
         Serpiente serpiente1 = new Serpiente(casillaInicioS1, casillaFinalS1);
 
-        int[] casillaInicioS2 = {7, 11};
-        int casillaFinalS2[] = {11, 8};
+        int[] casillaInicioS2 = {6, 2};
+        int casillaFinalS2[] = {10, 0};
         Serpiente serpiente2 = new Serpiente(casillaInicioS2, casillaFinalS2);
 
-        int[] casillaInicioS3 = {4, 5};
-        int casillaFinalS3[] = {9, 7};
+        int[] casillaInicioS3 = {7, 9};
+        int casillaFinalS3[] = {10, 9};
         Serpiente serpiente3 = new Serpiente(casillaInicioS3, casillaFinalS3);
 
-        Serpiente serpientes[] = {serpiente1, serpiente2, serpiente3};
+        int[] casillaInicioS4 = {4, 8};
+        int[] casillaFinalS4 = {8, 6};
+        Serpiente serpiente4 = new Serpiente(casillaInicioS4, casillaFinalS4);
+
+        int[] casillaInicioS5 = {2, 7};
+        int casillaFinalS5[] = {8, 3};
+        Serpiente serpiente5 = new Serpiente(casillaInicioS5, casillaFinalS5);
+
+        int[] casillaInicioS6 = {1, 9};
+        int casillaFinalS6[] = {4, 9};
+        Serpiente serpiente6 = new Serpiente(casillaInicioS6, casillaFinalS6);
+
+        int[] casillaInicioS7 = {3, 1};
+        int[] casillaFinalS7 = {5, 2};
+        Serpiente serpiente7 = new Serpiente(casillaInicioS7, casillaFinalS7);
+
+        int[] casillaInicioS8 = {0, 2};
+        int casillaFinalS8[] = {4, 0};
+        Serpiente serpiente8 = new Serpiente(casillaInicioS8, casillaFinalS8);
+
+        int[] casillaInicioS9 = {0, 3};
+        int casillaFinalS9[] = {2, 2};
+        Serpiente serpiente9 = new Serpiente(casillaInicioS9, casillaFinalS9);
+
+        Serpiente serpientes[] = {serpiente1, serpiente2, serpiente3, serpiente4, serpiente5, serpiente6, serpiente7, serpiente8, serpiente9};
 
         int casillaInicioE1[] = {11, 3};
         int casillaFinalE1[] = {7, 4};
@@ -214,7 +238,31 @@ public class Juego {
         int casillaFinalE3[] = {0, 10};
         Escalera escalera3 = new Escalera(casillaInicioE3, casillaFinalE3);
 
-        Escalera escaleras[] = {escalera1, escalera2, escalera3};
+        int casillaInicioE4[] = {11, 3};
+        int casillaFinalE4[] = {7, 4};
+        Escalera escalera4 = new Escalera(casillaInicioE4, casillaFinalE4);
+
+        int casillaInicioE5[] = {6, 8};
+        int casillaFinalE5[] = {1, 5};
+        Escalera escalera5 = new Escalera(casillaInicioE5, casillaFinalE5);
+
+        int casillaInicioE6[] = {3, 11};
+        int casillaFinalE6[] = {0, 10};
+        Escalera escalera6 = new Escalera(casillaInicioE6, casillaFinalE6);
+
+        int casillaInicioE7[] = {11, 3};
+        int casillaFinalE7[] = {7, 4};
+        Escalera escalera7 = new Escalera(casillaInicioE7, casillaFinalE7);
+
+        int casillaInicioE8[] = {6, 8};
+        int casillaFinalE8[] = {1, 5};
+        Escalera escalera8 = new Escalera(casillaInicioE8, casillaFinalE8);
+
+        int casillaInicioE9[] = {3, 11};
+        int casillaFinalE9[] = {0, 10};
+        Escalera escalera9 = new Escalera(casillaInicioE9, casillaFinalE9);
+
+        Escalera escaleras[] = {escalera1, escalera2, escalera3, escalera4, escalera5, escalera6, escalera7, escalera8, escalera9};
 
         Casilla casillas[][] = new Casilla[12][12];
         for (int i = 0; i < casillas.length; i++) {
@@ -222,15 +270,18 @@ public class Juego {
                 casillas[i][j] = new Casilla();
             }
         }
-        casillas[2][2].setSorpresa(true);
-        casillas[3][8].setSorpresa(true);
-        casillas[7][2].setSorpresa(true);
-        casillas[8][8].setSorpresa(true);
-        casillas[11][5].setSorpresa(true);
+        casillas[11][9].setSorpresa(true);
+        casillas[9][3].setSorpresa(true);
+        casillas[7][3].setSorpresa(true);
+        casillas[5][1].setSorpresa(true);
+        casillas[5][9].setSorpresa(true);
+        casillas[4][6].setSorpresa(true);
+        casillas[1][7].setSorpresa(true);
+        casillas[0][4].setSorpresa(true);
 
         Tablero tablero = new Tablero(casillas, escaleras, serpientes);
 
-        Tipo tipo3 = new Tipo(144, tablero, false, 5, escaleras.length, serpientes.length, false);
+        Tipo tipo3 = new Tipo(144, tablero, false, 8, escaleras.length, serpientes.length, false);
         return tipo3;
     }
 
