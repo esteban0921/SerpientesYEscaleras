@@ -12,6 +12,7 @@ import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import datos.*;
+import java.util.Random;
 import presentacion.UI;
 
 /**
@@ -297,6 +298,34 @@ public class Juego {
         Movimiento.comprobarSerpiente(tipo.getTablero().getSerpientes(), jugador);
         Movimiento.comprobarSorpresa(tipo.getTablero().getCasillas(), jugador);
         return Movimiento.esGanador(jugador);
+    }
+
+    public static Jugador[] crearFantasmas(int tamanoTablero) { //crea los tres fantasmas
+        int[] posicionJugador = {0, 0};
+        Random azar = new Random();
+        Jugador Fantasmas[] = new Jugador[3];
+        Ficha fichaFantasma = new Ficha("gris");
+
+        for (int i = 0; i < 3; i++) {
+            switch (tamanoTablero) {
+                case 64:
+                    posicionJugador[0] = (int) (azar.nextDouble() * 7 + 4);
+                    posicionJugador[1] = (int) (azar.nextDouble() * 7);
+                    break;
+                case 100:
+                    posicionJugador[0] = (int) (azar.nextDouble() * 9 + 5);
+                    posicionJugador[1] = (int) (azar.nextDouble() * 9);
+                    break;
+                case 144:
+                    posicionJugador[0] = (int) (azar.nextDouble() * 11 + 6);
+                    posicionJugador[1] = (int) (azar.nextDouble() * 11);
+                    break;
+            }
+            Jugador Fantasma = new Jugador((i+2), "Fantasma " + (i+1), fichaFantasma);
+            Fantasma.setPosicion(posicionJugador);
+            Fantasmas[i]=Fantasma;
+        }
+        return Fantasmas;
     }
 
     /**
