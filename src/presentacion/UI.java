@@ -295,6 +295,9 @@ public class UI {
             case 6:
                 System.out.println("Cayó en una " + m);
                 break;
+            case 7:
+                System.out.println("Un fantasma ha caído sobre ti. " + m + " has perdido el juego...");
+                break;
         }
     }
 }

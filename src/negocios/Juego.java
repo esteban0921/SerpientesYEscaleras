@@ -300,21 +300,30 @@ public class Juego {
         return Movimiento.esGanador(jugador);
     }
 
+    public static boolean comprobarFantasma(Jugador jugador1, Jugador fantasma) {
+        if ((fantasma.getPosicion()[0] == jugador1.getPosicion()[0]) && (fantasma.getPosicion()[1] == jugador1.getPosicion()[1])) {
+            UI.mensaje(7, jugador1.getNombre());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static Jugador crearFantasma(int id, int tamanoTablero) {
         int[] posicionJugador = {0, 0};
         Ficha fichaFantasma = new Ficha("gris");
 
         switch (tamanoTablero) {
             case 64:
-                posicionJugador[0] = (int) (Math.random() * (7 - 4 + 1) + 4);
+                posicionJugador[0] = (int) (Math.random() * (7 - 5 + 1) + 5);
                 posicionJugador[1] = (int) (Math.random() * (7 + 1));
                 break;
             case 100:
-                posicionJugador[0] = (int) (Math.random() * (9 - 5 + 1) + 5);
+                posicionJugador[0] = (int) (Math.random() * (9 - 7 + 1) + 7);
                 posicionJugador[1] = (int) (Math.random() * (9 + 1));
                 break;
             case 144:
-                posicionJugador[0] = (int) (Math.random() * (11 - 6 + 1) + 6);
+                posicionJugador[0] = (int) (Math.random() * (11 - 9 + 1) + 9);
                 posicionJugador[1] = (int) (Math.random() * (11 + 1));
                 break;
         }
@@ -390,22 +399,6 @@ public class Juego {
 
                 boolean JuegoTerminado = false;
 
-                System.out.println(">>" + posicionJugador[0]);
-                System.out.println(">>" + posicionJugador[1]);
-                System.out.println("");
-
-                System.out.println(">>" + Fantasma1.getPosicion()[0]);
-                System.out.println(">>" + Fantasma1.getPosicion()[1]);
-                System.out.println("");
-
-                System.out.println(">>" + Fantasma2.getPosicion()[0]);
-                System.out.println(">>" + Fantasma2.getPosicion()[1]);
-                System.out.println("");
-
-                System.out.println(">>" + Fantasma3.getPosicion()[0]);
-                System.out.println(">>" + Fantasma3.getPosicion()[1]);
-                System.out.println("");
-
                 UI.imprimirTablero(tipo.getTablero(), jugadores);
                 while (!JuegoTerminado) {
                     switch (Turno.getTurnoDe()) {
@@ -415,14 +408,23 @@ public class Juego {
                             break;
                         case 2:
                             JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(1), dado);
+                            if (!JuegoTerminado) {
+                                JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(1));
+                            }
                             Turno.CambiarTurno();
                             break;
                         case 3:
                             JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(2), dado);
+                            if (!JuegoTerminado) {
+                                JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(2));
+                            }
                             Turno.CambiarTurno();
                             break;
                         case 4:
                             JuegoTerminado = MovimientoYComprobar(tipo, jugadores.get(3), dado);
+                            if (!JuegoTerminado) {
+                                JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(3));
+                            }
                             Turno.CambiarTurno();
                             break;
                         default:
