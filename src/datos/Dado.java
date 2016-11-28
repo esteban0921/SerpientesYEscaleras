@@ -24,6 +24,10 @@ public class Dado {
         this.color = color;
         this.numeroObtenido = 0;
     }
+    
+    public Dado() {
+        this.numeroObtenido = 0;
+    }
 
     public String getColor() {
         return color;

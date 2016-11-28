@@ -15,6 +15,7 @@ public class Jugador {
     private String nombre;
     private Ficha ficha;
     private int posicion[] = new int[2];
+    private static int sentido;
 
     public Jugador(int id, String nombre, Ficha ficha) {
         this.id = id;
@@ -22,6 +23,14 @@ public class Jugador {
         this.ficha = ficha;
         int[] pocision = {10, 10};
         this.posicion = pocision;
+    }
+
+    public int getSentido() {
+        return sentido;
+    }
+
+    public void setSentido(int sentido) {
+        this.sentido = sentido;
     }
 
     public int getId() {

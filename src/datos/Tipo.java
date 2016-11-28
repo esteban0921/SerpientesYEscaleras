@@ -10,6 +10,7 @@ package datos;
  * @author LENOVO
  */
 public class Tipo {
+
     private int tamanoTablero;
     private Tablero tablero;
     private boolean unJugador;
@@ -17,8 +18,8 @@ public class Tipo {
     private int numeroEscaleras;
     private int numeroSerpientes;
     private boolean fantasmas;
-    
-    public Tipo (int tamanoTablero, Tablero tablero, boolean unJugador, int numeroCasillasSorpresa, int numeroEscaleras, int numeroSerpientes, boolean fantasmas){
+
+    public Tipo(int tamanoTablero, Tablero tablero, boolean unJugador, int numeroCasillasSorpresa, int numeroEscaleras, int numeroSerpientes, boolean fantasmas) {
         this.tamanoTablero = tamanoTablero;
         this.tablero = tablero;
         this.unJugador = unJugador;

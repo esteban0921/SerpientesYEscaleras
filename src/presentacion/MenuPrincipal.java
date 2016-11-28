@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
@@ -14,6 +15,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     int tamañoVentana = screenSize.height - 100;
     int tamañoImagenes = screenSize.height - 150;
 
+    public void setIconInLabel(JLabel label, String dirreccion) {
+        ImageIcon imagen = new ImageIcon(getClass().getResource(dirreccion));
+        ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        label.setIcon(icono);
+    }
+    
     public MenuPrincipal() {
         initComponents();
 
@@ -23,9 +30,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         fondo.setSize(tamañoImagenes, tamañoImagenes);
 
-        ImageIcon imagenFondo = new ImageIcon("C:\\Users\\braya\\Documents\\UNAL\\SEMESTRE 2\\POO\\PROYECTO\\Menu.png");
-        Icon iconoFondo = new ImageIcon(imagenFondo.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
-        fondo.setIcon(iconoFondo);
+        setIconInLabel(fondo, "/Multimedia/Menu.png");
         fondo.setLocation(0, 0);
 
         fondo.add(botonContinuar);
@@ -35,6 +40,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fondo.add(botonSalir);
         botonSalir.setLocation(220, 490);
         this.repaint();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -124,7 +130,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             JFileChooser file = new JFileChooser();
             file.showOpenDialog(this);
-;
     }//GEN-LAST:event_botonContinuarActionPerformed
 
     /**

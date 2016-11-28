@@ -13,7 +13,9 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import datos.*;
 import java.util.Random;
+import presentacion.MenuPrincipal;
 import presentacion.UI;
+import presentacion.UIGrafica;
 
 /**
  *
@@ -29,6 +31,10 @@ public class Juego {
         this.tipo = tipo;
         this.jugadores = jugadores;
         this.dado = dado;
+    }
+
+    public static void generarTableroUI() {
+        
     }
 
     public static Tipo crearTipo1() { //8x8
@@ -227,40 +233,40 @@ public class Juego {
 
         Serpiente serpientes[] = {serpiente1, serpiente2, serpiente3, serpiente4, serpiente5, serpiente6, serpiente7, serpiente8, serpiente9};
 
-        int casillaInicioE1[] = {11, 3};
-        int casillaFinalE1[] = {7, 4};
+        int casillaInicioE1[] = {11, 5};
+        int casillaFinalE1[] = {9, 7};
         Escalera escalera1 = new Escalera(casillaInicioE1, casillaFinalE1);
 
-        int casillaInicioE2[] = {6, 8};
-        int casillaFinalE2[] = {1, 5};
+        int casillaInicioE2[] = {11, 7};
+        int casillaFinalE2[] = {7, 11};
         Escalera escalera2 = new Escalera(casillaInicioE2, casillaFinalE2);
 
-        int casillaInicioE3[] = {3, 11};
-        int casillaFinalE3[] = {0, 10};
+        int casillaInicioE3[] = {9, 2};
+        int casillaFinalE3[] = {7, 2};
         Escalera escalera3 = new Escalera(casillaInicioE3, casillaFinalE3);
 
-        int casillaInicioE4[] = {11, 3};
-        int casillaFinalE4[] = {7, 4};
+        int casillaInicioE4[] = {8, 8};
+        int casillaFinalE4[] = {7, 6};
         Escalera escalera4 = new Escalera(casillaInicioE4, casillaFinalE4);
 
-        int casillaInicioE5[] = {6, 8};
-        int casillaFinalE5[] = {1, 5};
+        int casillaInicioE5[] = {6, 10};
+        int casillaFinalE5[] = {2, 11};
         Escalera escalera5 = new Escalera(casillaInicioE5, casillaFinalE5);
 
-        int casillaInicioE6[] = {3, 11};
-        int casillaFinalE6[] = {0, 10};
+        int casillaInicioE6[] = {3, 7};
+        int casillaFinalE6[] = {0, 9};
         Escalera escalera6 = new Escalera(casillaInicioE6, casillaFinalE6);
 
-        int casillaInicioE7[] = {11, 3};
-        int casillaFinalE7[] = {7, 4};
+        int casillaInicioE7[] = {6, 5};
+        int casillaFinalE7[] = {4, 3};
         Escalera escalera7 = new Escalera(casillaInicioE7, casillaFinalE7);
 
-        int casillaInicioE8[] = {6, 8};
+        int casillaInicioE8[] = {5, 0};
         int casillaFinalE8[] = {1, 5};
         Escalera escalera8 = new Escalera(casillaInicioE8, casillaFinalE8);
 
-        int casillaInicioE9[] = {3, 11};
-        int casillaFinalE9[] = {0, 10};
+        int casillaInicioE9[] = {6, 8};
+        int casillaFinalE9[] = {3, 5};
         Escalera escalera9 = new Escalera(casillaInicioE9, casillaFinalE9);
 
         Escalera escaleras[] = {escalera1, escalera2, escalera3, escalera4, escalera5, escalera6, escalera7, escalera8, escalera9};
@@ -293,6 +299,14 @@ public class Juego {
     }
 
     public static boolean MovimientoYComprobar(Tipo tipo, Jugador jugador, Dado dado) {
+        Movimiento.moverFicha(tipo.getTablero().getCasillas(), jugador, dado);
+        Movimiento.comprobarCaminoYMover(tipo.getTablero().getEscaleras(), jugador);
+        Movimiento.comprobarCaminoYMover(tipo.getTablero().getSerpientes(), jugador);
+        Movimiento.comprobarSorpresa(tipo.getTablero().getCasillas(), jugador);
+        return Movimiento.esGanador(jugador);
+    }
+
+    public static boolean MovimientoYComprobar(Tipo tipo, Jugador jugador, int dado) {
         Movimiento.moverFicha(tipo.getTablero().getCasillas(), jugador, dado);
         Movimiento.comprobarCaminoYMover(tipo.getTablero().getEscaleras(), jugador);
         Movimiento.comprobarCaminoYMover(tipo.getTablero().getSerpientes(), jugador);
@@ -335,7 +349,8 @@ public class Juego {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+ /* public static void main(String[] args) {
+        generarTableroUI();
         boolean jugar = true, colorRepetido = true;
         int opcion, numJugadores;
         boolean fantasma; //Donde se coloca?
@@ -400,6 +415,7 @@ public class Juego {
                 boolean JuegoTerminado = false;
 
                 UI.imprimirTablero(tipo.getTablero(), jugadores);
+
                 while (!JuegoTerminado) {
                     switch (Turno.getTurnoDe()) {
                         case 1:
@@ -435,7 +451,6 @@ public class Juego {
                 }
 
                 jugar = (UI.terminar());
-                ////////////////////////*************************/////////// 
             } else {
                 opcion++;
                 switch (UI.Menu(opcion)) {
@@ -535,4 +550,5 @@ public class Juego {
             }
         }
     }
+*/
 }

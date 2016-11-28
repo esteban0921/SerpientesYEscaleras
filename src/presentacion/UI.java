@@ -9,6 +9,7 @@ import datos.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -275,12 +276,16 @@ public class UI {
             case 2:
                 if (m == "1") {
                     System.out.println("Casilla Sorpresa: Avanza una casilla");
+                    JOptionPane.showMessageDialog(null,"Casilla Sorpresa: Avanza una casilla"); 
                 } else if (m == "2") {
                     System.out.println("Casilla Sorpresa: Avanza dos casillas");
+                    JOptionPane.showMessageDialog(null,"Casilla Sorpresa: Avanza dos casillas"); 
                 } else if (m == "3") {
                     System.out.println("Casilla Sorpresa: retrocede una casilla");
+                    JOptionPane.showMessageDialog(null,"Casilla Sorpresa: retrocede una casilla"); 
                 } else if (m == "4") {
                     System.out.println("Casilla Sorpresa: retrocede dos casillas");
+                    JOptionPane.showMessageDialog(null,"Casilla Sorpresa: retrocede dos casillas"); 
                 }
                 break;
             case 3:
