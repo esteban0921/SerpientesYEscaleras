@@ -594,6 +594,9 @@ public class MenuJugadores extends javax.swing.JFrame {
             nombreJug4.setEditable(false);
             nombreJug4.setText("");
             colorJug4.setEnabled(false);
+            colorJug2.setSelectedItem("seleccione un color 2");
+            colorJug3.setSelectedItem("seleccione un color 3");
+            colorJug4.setSelectedItem("seleccione un color 4");
         }
     }//GEN-LAST:event_seleccion1JugadorActionPerformed
 
@@ -609,6 +612,8 @@ public class MenuJugadores extends javax.swing.JFrame {
             nombreJug4.setEditable(false);
             nombreJug4.setText("");
             colorJug4.setEnabled(false);
+            colorJug3.setSelectedItem("seleccione un color 3");
+            colorJug4.setSelectedItem("seleccione un color 4");
         }
     }//GEN-LAST:event_seleccion2JugadoresActionPerformed
 
@@ -623,6 +628,7 @@ public class MenuJugadores extends javax.swing.JFrame {
             nombreJug4.setEditable(false);
             nombreJug4.setText("");
             colorJug4.setEnabled(false);
+            colorJug4.setSelectedItem("seleccione un color 4");
         }
     }//GEN-LAST:event_seleccion3JugadoresActionPerformed
 

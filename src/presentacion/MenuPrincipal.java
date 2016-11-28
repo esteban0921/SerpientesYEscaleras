@@ -3,10 +3,8 @@ package presentacion;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -30,11 +28,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         fondo.setSize(tamañoImagenes, tamañoImagenes);
 
-        setIconInLabel(fondo, "/Multimedia/Menu.png");
+        setIconInLabel(fondo, "/Multimedia/menu.gif");
         fondo.setLocation(0, 0);
 
-        fondo.add(botonContinuar);
-        botonContinuar.setLocation(220, 350);
         fondo.add(botonJuegoNuevo);
         botonJuegoNuevo.setLocation(220, 420);
         fondo.add(botonSalir);
@@ -54,7 +50,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         fondo = new javax.swing.JLabel();
         botonJuegoNuevo = new javax.swing.JButton();
-        botonContinuar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,14 +58,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonJuegoNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonJuegoNuevoActionPerformed(evt);
-            }
-        });
-
-        botonContinuar.setText("Continuar");
-        botonContinuar.setPreferredSize(new java.awt.Dimension(95, 23));
-        botonContinuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonContinuarActionPerformed(evt);
             }
         });
 
@@ -91,11 +78,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonJuegoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(botonJuegoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,9 +88,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(355, Short.MAX_VALUE)
-                .addComponent(botonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(406, Short.MAX_VALUE)
                 .addComponent(botonJuegoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,12 +107,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuJugadores.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonJuegoNuevoActionPerformed
-
-    private void botonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContinuarActionPerformed
-
-            JFileChooser file = new JFileChooser();
-            file.showOpenDialog(this);
-    }//GEN-LAST:event_botonContinuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +145,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonContinuar;
     private javax.swing.JButton botonJuegoNuevo;
     private javax.swing.JButton botonSalir;
     private javax.swing.JLabel fondo;

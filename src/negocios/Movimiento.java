@@ -170,7 +170,7 @@ public class Movimiento {
                 UIGrafica.cambiarDirecciones(((numeroObtenido - mover[1]) - 1), mover[1], 1);
                 if (mover[0] < 0) {
                     UI.mensaje(4, "salir");
-                    JOptionPane.showMessageDialog(null, "Te saliste del tablero, perdiste turno.");
+                    //JOptionPane.showMessageDialog(null, "Te saliste del tablero, perdiste turno.");
                     mover[0] = jugador.getPosicion()[0];
                     mover[1] = jugador.getPosicion()[1];
                     UIGrafica.cambiarDirecciones(0,0,0);

@@ -42,6 +42,7 @@ public class UIGrafica extends javax.swing.JFrame {
     private ArrayList<Jugador> jugadores;
     private Dado dado = new Dado();
     private javax.swing.JLabel simbolo;
+    private boolean JuegoTerminado = false;
 
     Toolkit t = Toolkit.getDefaultToolkit();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -342,11 +343,12 @@ public class UIGrafica extends javax.swing.JFrame {
                     Movimiento.comprobarCaminoYMover(tipo.getTablero().getEscaleras(), jugadores.get((Turno.getTurnoDe() - 1)));
                     this.comprobarCaminoYMover(tipo.getTablero().getSerpientes(), simbolo);
                     Movimiento.comprobarCaminoYMover(tipo.getTablero().getSerpientes(), jugadores.get((Turno.getTurnoDe() - 1)));
+                    if(jugadores.get((Turno.getTurnoDe() - 1)).getFicha().getColor() == "gris"){
+                        if(jugadores.get(Turno.getTurnoDe() - 1).getPosicion() == jugadores.get(0).getPosicion()) JuegoTerminado = true;
+                    }                    
                 }
                 Turno.CambiarTurno();
-                JOptionPane.showMessageDialog(null, "Turno del jugador " + Turno.getTurnoDe() + ": " + jugadores.get(Turno.getTurnoDe() - 1).getNombre());
-            } else {
-
+                if(JuegoTerminado == false)JOptionPane.showMessageDialog(null, "Turno del jugador " + Turno.getTurnoDe() + ": " + jugadores.get(Turno.getTurnoDe() - 1).getNombre());
             }
         }
     }
@@ -615,50 +617,57 @@ public class UIGrafica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonLanzarDadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLanzarDadoActionPerformed
-        boolean JuegoTerminado = false;
-        switch (Turno.getTurnoDe()) {
-            case 1:
-                JuegoTerminado = this.Movimiento(tipo, jugadores.get(0), dado);
-                LanzarDado(jugador1);
-//                Turno.CambiarTurno();
-                break;
-            case 2:
-                JuegoTerminado = Movimiento(tipo, jugadores.get(1), dado);
-                LanzarDado(jugador2);
-                if (!JuegoTerminado) {
-                    if (jugadores.get(1).getFicha().getColor() == "gris") {
-                        JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(1));
+        JuegoTerminado = false;
+            switch (Turno.getTurnoDe()) {
+                case 1:
+                    JuegoTerminado = this.Movimiento(tipo, jugadores.get(0), dado);
+                    LanzarDado(jugador1);
+                    //                Turno.CambiarTurno();
+                    break;
+                case 2:
+                    JuegoTerminado = Movimiento(tipo, jugadores.get(1), dado);
+                    LanzarDado(jugador2);
+                    if (!JuegoTerminado) {
+                        if (jugadores.get(1).getFicha().getColor() == "gris") {
+                            JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(1));
+                        }
                     }
-                }
-//                Turno.CambiarTurno();
-                break;
-            case 3:
-                JuegoTerminado = Movimiento(tipo, jugadores.get(2), dado);
-                LanzarDado(jugador3);
-                if (!JuegoTerminado) {
-                    if (jugadores.get(2).getFicha().getColor() == "gris") {
-                        JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(2));
+                    //                Turno.CambiarTurno();
+                    break;
+                case 3:
+                    JuegoTerminado = Movimiento(tipo, jugadores.get(2), dado);
+                    LanzarDado(jugador3);
+                    if (!JuegoTerminado) {
+                        if (jugadores.get(2).getFicha().getColor() == "gris") {
+                            JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(2));
+                        }
                     }
-                }
-//                Turno.CambiarTurno();
-                break;
-            case 4:
-                JuegoTerminado = Movimiento(tipo, jugadores.get(3), dado);
-                LanzarDado(jugador4);
-                if (!JuegoTerminado) {
-                    if (jugadores.get(1).getFicha().getColor() == "gris") {
-                        JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(3));
+                    //                Turno.CambiarTurno();
+                    break;
+                case 4:
+                    JuegoTerminado = Movimiento(tipo, jugadores.get(3), dado);
+                    LanzarDado(jugador4);
+                    if (!JuegoTerminado) {
+                        if (jugadores.get(1).getFicha().getColor() == "gris") {
+                            JuegoTerminado = comprobarFantasma(jugadores.get(0), jugadores.get(3));
+                        }
                     }
-                }
-//                Turno.CambiarTurno();
-                break;
-            default:
-                //System.out.println("No hay m�s turnos"); //Se supone que jam�s sera diferente de estos valores.
-                break;
-        }
-        if (JuegoTerminado) {
-            JOptionPane.showMessageDialog(null, "Juego Terminado");
-            System.exit(0);
+                    //                Turno.CambiarTurno();
+                    break;
+                default:
+                    //System.out.println("No hay m�s turnos"); //Se supone que jam�s sera diferente de estos valores.
+                    break;
+            }
+        if(JuegoTerminado) {
+            BotonLanzarDado.setEnabled(false);
+            this.setEnabled(false);
+            int inicio = JOptionPane.showConfirmDialog(null, "Juego Terminado. ¿Desea jugar otra partida?");
+            if (inicio == JOptionPane.OK_OPTION) {
+                MenuJugadores menu = new MenuJugadores();
+                menu.setVisible(true);
+            } else if (inicio == JOptionPane.CLOSED_OPTION) {
+                System.exit(0);
+            }
         }
     }//GEN-LAST:event_BotonLanzarDadoActionPerformed
 
